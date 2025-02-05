@@ -4,6 +4,7 @@ import websiteLogo from './websiteLogo.png';
 import googleLogo from './googleLogo.png';
 import shopingBag from './shopingBag.png';
 import payment from './payment.png';
+import BannerPic from './BannerPic.png'
 
-export { cart, githubLogo, websiteLogo, googleLogo, shopingBag, payment };
+export { cart, githubLogo, websiteLogo, googleLogo, shopingBag, payment, BannerPic };
 

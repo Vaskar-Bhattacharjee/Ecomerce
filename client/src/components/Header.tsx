@@ -4,11 +4,11 @@ import { shopingBag } from '../assets/index';
 
 function Header() {
   return (
-    <div className="w-[95vw] m-auto h-20 bg-white border-b-[1px]
+    <div className="w-[95vw] m-auto  h-20 bg-white border-b-[1px]
      border-b-gray-800 ">
-      <div className="flex justify-between items-center mx-auto">
+      <div className="flex justify-between lg:h-20 items-center mx-auto">
         <div>
-          <img className="w-28" src={websiteLogo} alt="logo" />
+          <img className="h-25 w-40 " src={websiteLogo} alt="logo" />
         </div>
         <div className='mr-3 flex gap-9'>
           <ul className="flex gap-8 items-center" >
@@ -36,13 +36,17 @@ function Header() {
           </ul>
           <div className='relative'>
             <img src={cart} className='w-7 cursor-pointer' />
-            {/* <span
-            className='absolute w-6 top-2 left-0 text-sm flex items-center
-            justify-center font-semibold'
-            >0</span> */}
+            <span
+            className='absolute w-4 left-0 top-[-1rem] text-sm flex items-center
+            justify-center font-semibold bg-red-500  rounded-4xl text-white'
+            >0</span>
           </div>
-          <div>
+          <div className='relative'>
           <img className="w-7 cursor-pointer" src={shopingBag} alt="googleLogo" />
+          <span
+            className='absolute w-4 left-0 top-[-1rem] text-sm flex items-center
+            justify-center font-semibold bg-red-500  rounded-4xl text-white'
+            >0</span>
         </div>
         </div>
     
