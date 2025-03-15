@@ -67,7 +67,7 @@ function Product() {
                   <p className="text-xs text-gray-500">(1 customer review)</p>
               </div>
               <p className="text-gray-500">{details.description}</p>
-              <div>
+              <div className="flex gap-4">
                 <div className="flex w-52 items-center justify-between text-gray-500 
                 gap-4 border p-3">
                   <p className="text-sm text-gray-700">Quantity</p>
@@ -79,9 +79,10 @@ function Product() {
                     <button className=" border h-5 font-normal text-lg flex
                     items-center justify-center px-2 hover:bg-gray-700
                     hover:text-white duration-300 active:bg-black cursor-pointer">+</button>
+                  </div>               
                   </div>
-
-                </div>
+                  <button className="bg-black text-white px-6 py-3
+                  cursor-pointer hover:bg-gray-700  duration-300 border active:bg-gray-800">Add to Cart</button>
               </div>
           </div>
           
