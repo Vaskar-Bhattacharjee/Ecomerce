@@ -1,5 +1,5 @@
 import ProductsCart from "./ProductsCart";  
-import {Link} from "react-router-dom"
+
 
 interface Product {
     _id: string;
@@ -9,6 +9,7 @@ interface Product {
     isNew: boolean;
     oldPrice: number;
     price: number;
+    description: string;
 }
 
 interface ProductsProps {    
@@ -31,12 +32,10 @@ function Products({ products }: ProductsProps) {
                 </p>       
             </div>       
             <div className="max-w-screen-xl mx-auto py-10 grid grid-cols-4 gap-10">         
-                {products.map((item) => (   
-                            <Link key={item._id} to={`/product/${item._id}`} state={item}>
-                                 <ProductsCart product={item} />
-                             </Link>      
-                            
-                ))}       
+                {products.map((item) => (                    
+                         <ProductsCart product={item} key={item._id} />                        
+                         
+                         ))}       
             </div>     
         </div>   
     ); 

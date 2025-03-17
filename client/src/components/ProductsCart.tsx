@@ -1,7 +1,24 @@
 import { BsArrowRight} from "react-icons/bs"
 import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { addToCart } from "../Redux/HatbazarSlice";
 
-function ProductsCart({ product }: any) {
+
+type Product = {
+  _id: string,
+  title: string,
+  category: string,
+  image: string,
+  isNew: boolean,
+  oldPrice: number,
+  price: number,
+ description: string,
+
+};
+
+
+function ProductsCart({ product }: { product: Product }) {
+  const dispatch = useDispatch();
   const Navigate = useNavigate();
   const _id = product.title;
   const idString = (_id: string) =>{
@@ -11,7 +28,8 @@ function ProductsCart({ product }: any) {
 
 
   const handleDetails =() =>{
-    Navigate(`/product/${rootId}`)
+    console.log("Navigating with product:", product); // Debug log
+    Navigate(`/product/${rootId}`, { state: product });
     
 }
   
@@ -36,6 +54,15 @@ function ProductsCart({ product }: any) {
             <p className="text-[14px] font-semibold">${product.price}</p>
           </div>
           <p
+          onClick={() => dispatch(addToCart({
+            _id: product._id,
+            title: product.title,
+            category: product.category,
+            image: product.image,
+            price: product.price,
+            description: product.description,
+            quantity: 1,
+          }))}
           className="absolute text-sm z-20 w-[100px] text-gray-500 hover:text-gray-900 flex gap-1
           items-center top-0 transform translate-x-32 group-hover:translate-x-0 duration-500
           cursor-pointer transition-transform"
