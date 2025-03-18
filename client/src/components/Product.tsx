@@ -2,6 +2,8 @@ import { useEffect, useState } from "react";
 import { MdOutlineStar } from "react-icons/md";
 import { useLocation } from "react-router-dom";
 import { useDispatch } from "react-redux";
+import { addToCart } from "../Redux/HatbazarSlice";
+import { ToastContainer, toast } from "react-toastify";
 
 interface Product {
   _id: string;
@@ -100,7 +102,8 @@ function Product() {
                     price: details.price,
                     description: details.description,
                     quantity: baseQty,
-                  }))}}
+                  }));
+                  toast.success(`${details.title} added to cart!`);}} 
                   className="bg-black text-white px-6 py-3
                   cursor-pointer hover:bg-gray-700  duration-300 border active:bg-gray-800">Add to Cart</button>
               </div>
@@ -109,7 +112,18 @@ function Product() {
               </div>
               
           </div>
-          
+          <ToastContainer
+          position="top-left"
+          autoClose={2000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+          theme="dark"
+          />
         </div> 
       ) : (
         <p>Loading or No Data Found</p>

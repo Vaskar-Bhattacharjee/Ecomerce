@@ -4,6 +4,7 @@ import Header from './components/Header';
 import Footer from './components/Footer';
 import ProductPage from './pages/ProductPage';
 import { productsData } from './api/Api';
+import CartPage from './pages/CartPage';
 import {
   Outlet,
   RouterProvider,
@@ -36,6 +37,10 @@ const router = createBrowserRouter([
     {
       path: "/product/:id",
       element: <ProductPage />
+    },
+    {
+      path: "/cart",
+      element: <CartPage />
     }
   ]
  } 

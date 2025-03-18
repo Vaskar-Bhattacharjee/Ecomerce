@@ -3,6 +3,8 @@ import { websiteLogo } from '../assets/index';
 import { cart } from '../assets/index';
 import { shopingBag } from '../assets/index';
 import { useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
+
 
 type Product = {
   _id: string,
@@ -60,15 +62,16 @@ function Header() {
             <img src={cart} className='w-8 cursor-pointer' />
            
           </div>
-          <div className='relative'>
-          <img className="w-8 cursor-pointer" src={shopingBag} alt="googleLogo" />
-          <span
-            className='absolute w-4 left-2 top-2.5 text-sm flex items-center
-            justify-center font-semibold rounded-4xl text-black'
-            >{productData.length}</span>
-        </div>
-        </div>
-    
+          <Link to="/cart">
+              <div className='relative'>
+              <img className="w-8 cursor-pointer" src={shopingBag} alt="googleLogo" />
+              <span
+                className='absolute w-4 left-2 top-2.5 text-sm flex items-center
+                justify-center font-semibold rounded-4xl text-black'
+                >{productData.length}</span>
+            </div>
+          </Link>
+        </div>    
       </div>
     </div>
   );

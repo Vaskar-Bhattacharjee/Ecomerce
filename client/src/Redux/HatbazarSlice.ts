@@ -30,7 +30,14 @@ export const HatbazarSlice = createSlice({
             }else{
                 state.productsData.push(action.payload);
             }
-            
+        },
+        deleteToCart: (state, action) => {
+            state.productsData = state.productsData.filter(
+                (item) => item._id !== action.payload
+            )
+        },
+        clearCart: (state) => {
+            state.productsData = [];
         }
     }
 });

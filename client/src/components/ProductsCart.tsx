@@ -2,6 +2,7 @@ import { BsArrowRight} from "react-icons/bs"
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { addToCart } from "../Redux/HatbazarSlice";
+import { ToastContainer, toast } from "react-toastify";
 
 
 type Product = {
@@ -54,15 +55,19 @@ function ProductsCart({ product }: { product: Product }) {
             <p className="text-[14px] font-semibold">${product.price}</p>
           </div>
           <p
-          onClick={() => dispatch(addToCart({
-            _id: product._id,
-            title: product.title,
-            category: product.category,
-            image: product.image,
-            price: product.price,
-            description: product.description,
-            quantity: 1,
-          }))}
+            onClick={() => {
+              dispatch(addToCart({
+                _id: product._id,
+                title: product.title,
+                category: product.category,
+                image: product.image,
+                price: product.price,
+                description: product.description,
+                quantity: 1,
+              }));
+              toast.success(`${product.title} added to cart`);
+            }}
+       
           className="absolute text-sm z-20 w-[100px] text-gray-500 hover:text-gray-900 flex gap-1
           items-center top-0 transform translate-x-32 group-hover:translate-x-0 duration-500
           cursor-pointer transition-transform"
@@ -75,8 +80,19 @@ function ProductsCart({ product }: { product: Product }) {
           top-4 right-0 absolute">Sale</p>
         }
       </div>
-      
-  </div>;
+      <ToastContainer
+          position="top-left"
+          autoClose={2000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+          theme="dark"
+          />
+  </div>
 }
 
 export default ProductsCart
