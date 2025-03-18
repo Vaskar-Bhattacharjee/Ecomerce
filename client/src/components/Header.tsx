@@ -42,18 +42,15 @@ function Header() {
 
           </ul>
           <div className='relative '>
-            <img src={cart} className='w-7 cursor-pointer' />
-            <span
-            className='absolute w-4 left-0 top-[-1rem] text-sm flex items-center
-            justify-center font-semibold bg-red-500  rounded-4xl text-white'
-            >{productData.length}</span>
+            <img src={cart} className='w-8 cursor-pointer' />
+           
           </div>
           <div className='relative'>
-          <img className="w-7 cursor-pointer" src={shopingBag} alt="googleLogo" />
+          <img className="w-8 cursor-pointer" src={shopingBag} alt="googleLogo" />
           <span
-            className='absolute w-4 left-0 top-[-1rem] text-sm flex items-center
-            justify-center font-semibold bg-red-500  rounded-4xl text-white'
-            >0</span>
+            className='absolute w-4 left-2 top-2.5 text-sm flex items-center
+            justify-center font-semibold rounded-4xl text-black'
+            >{productData.length}</span>
         </div>
         </div>
     

@@ -5,7 +5,7 @@ import websiteLogo2 from './websiteLogo2.png';
 import googleLogo from './googleLogo.png';
 import shopingBag from './shopingBag.png';
 import HeroPic from './HeroPic.png'
-import PaymentStripe from './PaymentStripe.jpg'
+import PaymentStripe from './PaymentStripe.png'
 import Return from './Return.png'
  
 

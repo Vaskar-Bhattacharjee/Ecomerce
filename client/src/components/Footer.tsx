@@ -18,11 +18,11 @@ function Footer() {
             {/* ===========LogoIcon Start here========== */}
             <div className="flex flex-col gap-3">
                 <img 
-                className="w-fit h-auto mt-[-5px]"
+                className="w-fit h-auto "
                 src={websiteLogo2} alt="logo" />
-                <p className="text-sm text-white tracking-wide">ReactBD.com</p>
+                <p className="text-normal text-white tracking-wide">ReactBD.com</p>
                 <img 
-                className="w-60  h-auto"
+                className="w-[180px] h-8  mb-3"
                 src={PaymentStripe} alt="payment" />
                 <div className="flex gap-3 text-lg text-gray-500 cursor-pointer">
                   <ImGithub className="hover:text-white duration-300 cursor-pointer" />
