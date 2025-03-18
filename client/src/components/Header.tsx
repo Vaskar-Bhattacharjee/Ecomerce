@@ -4,8 +4,23 @@ import { cart } from '../assets/index';
 import { shopingBag } from '../assets/index';
 import { useSelector } from 'react-redux';
 
+type Product = {
+  _id: string,
+  title: string,
+  category: string,
+  image: string,
+  isNew: boolean,
+  oldPrice: number,
+  price: number,
+}
+type rootState = {
+  Hatbazar: {
+    productsData: Product[]
+  }
+}
+
 function Header() {
-  const productData = useSelector((state: any) => state.Hatbazar.productsData);
+  const productData = useSelector((state: rootState) => state.Hatbazar.productsData);
   console.log(productData);
   const Navigate = useNavigate();
   return (
