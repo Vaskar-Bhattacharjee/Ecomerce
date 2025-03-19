@@ -4,6 +4,7 @@ import { HatbazarSlice } from './HatbazarSlice'
 export const store = configureStore({
   reducer: {
     Hatbazar: HatbazarSlice.reducer,
+    
   },
 })
 

@@ -103,7 +103,7 @@ function Product() {
                     description: details.description,
                     quantity: baseQty,
                   }));
-                  toast.success(`${details.title} added to cart!`);}} 
+                  toast.success(`${details.title}  added to cart!`);}} 
                   className="bg-black text-white px-6 py-3
                   cursor-pointer hover:bg-gray-700  duration-300 border active:bg-gray-800">Add to Cart</button>
               </div>

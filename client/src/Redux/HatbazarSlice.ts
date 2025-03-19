@@ -41,6 +41,6 @@ export const HatbazarSlice = createSlice({
         }
     }
 });
-export const { addToCart } = HatbazarSlice.actions;
+export const { addToCart, deleteToCart, clearCart } = HatbazarSlice.actions;
 export default HatbazarSlice.reducer;
 
