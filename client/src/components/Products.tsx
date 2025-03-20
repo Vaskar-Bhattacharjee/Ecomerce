@@ -19,7 +19,7 @@ interface ProductsProps {
 function Products({ products }: ProductsProps) {   
     return (     
         <div>       
-            <div className="flex flex-col items-center gap-4">         
+            <div className="flex flex-col items-center gap-4 lg:mt-10">         
                 <h1 className="text-2xl bg-black text-white py-2 w-80 text-center">           
                     Shopping everyday         
                 </h1>         
