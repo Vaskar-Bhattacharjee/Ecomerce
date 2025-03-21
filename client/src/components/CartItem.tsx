@@ -1,7 +1,7 @@
 import { MdOutlineClose } from "react-icons/md";
 import {useSelector} from 'react-redux'
 import { useDispatch } from "react-redux";
-import { addToCart, deleteToCart } from "../Redux/HatbazarSlice";
+import { addToCart, deleteToCart, clearCart } from "../Redux/HatbazarSlice";
 import { toast } from "react-toastify";
 
 
@@ -60,13 +60,17 @@ function CartItem() {
                   </div>               
                 </div> 
                 <div className="w-4 text-gray-800 font-semibold">${item.quantity * item.price}</div>
-                <div>
-                  
-                </div> 
               </div>
             ))
         }
       </div>
+      <button 
+      onClick={() => {
+        dispatch(clearCart());
+        toast.error("Cart is empty")
+      }}
+      className="bg-red-500 text-white mt-8 
+      ml-7 py-1 px-6 hover:bg-red-800 duration-300">Reset Cart</button>
  
      </div>
      
