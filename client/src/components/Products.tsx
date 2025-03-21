@@ -19,7 +19,7 @@ interface ProductsProps {
 function Products({ products }: ProductsProps) {   
     return (     
         <div>       
-            <div className="flex flex-col items-center gap-4 lg:mt-10">         
+            <div className="flex flex-col items-center gap-4 mt-5 sm:mt-6 md:mt-7 lg:mt-10">         
                 <h1 className="text-2xl bg-black text-white py-2 w-80 text-center">           
                     Shopping everyday         
                 </h1>         
@@ -31,7 +31,7 @@ function Products({ products }: ProductsProps) {
                     distinctio.         
                 </p>       
             </div>       
-            <div className="max-w-screen-xl mx-auto py-10 grid grid-cols-4 gap-10">         
+            <div className="max-w-screen-xl mx-2 sm:mx-2 md:mx-3 lg:mx-auto py-10 grid grid-cols-2 gap-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 sm:gap-1 md:gap-2 lg:gap-10">         
                 {products.map((item) => (                    
                          <ProductsCart product={item} key={item._id} />                        
                          

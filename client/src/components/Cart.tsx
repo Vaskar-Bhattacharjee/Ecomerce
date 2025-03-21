@@ -2,6 +2,7 @@ import { useSelector } from 'react-redux'
 // import { Cartimage } from '../assets';
 import CartItem from './CartItem';
 import "@fontsource/poppins/500.css"; 
+import { ToastContainer } from 'react-toastify';
 
 
 
@@ -59,7 +60,19 @@ function Cart() {
       >Proceed to Checkout</button>
      </div>
      </div>
-   
+     <ToastContainer
+                  position="top-left"
+                  autoClose={2000}
+                  hideProgressBar={false}
+                  newestOnTop={false}
+                  closeOnClick
+                  rtl={false}
+                  pauseOnFocusLoss
+                  draggable
+                  pauseOnHover
+                  theme="dark"
+           
+                    />  
     </div>
   
    

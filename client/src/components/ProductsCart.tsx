@@ -37,13 +37,13 @@ function ProductsCart({ product }: { product: Product }) {
   return <div className="group relative">
     <div 
     onClick={handleDetails}
-    className="w-full h-96 cursor-pointer overflow-hidden">
+    className="w-full h-55 sm:h-60 md:h-70 lg:h-96 cursor-pointer overflow-hidden">
       <img
       className="w-full h-full object-cover group-hover:scale-110 duration-500"
       src={product.image} alt="productImage" />
 
     </div>
-    <div className="w-full flex justify-between items-center border-[1px] px-2 py-4">
+    <div className="w-full flex justify-between items-center border-[1px] px-2 py-4 h-[99px] sm:h-[99px] md:h-[90px] ">
       <div className="flex flex-col gap-1.5 ">
         <h2 className="text-[14px] font-semibold">{product.title}</h2>
         <p className="text-[14px] font-normal">{product.category}</p>

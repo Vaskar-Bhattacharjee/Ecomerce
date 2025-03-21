@@ -92,7 +92,7 @@ function Product() {
                     items-center justify-center px-2 hover:bg-gray-700
                     hover:text-white duration-300 active:bg-black cursor-pointer">+</button>
                   </div>               
-                  </div>
+                </div>
                   <button
                   onClick={() => {dispatch(addToCart({
                     _id: details._id,

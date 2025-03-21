@@ -14,7 +14,7 @@ import { MdLocationOn } from "react-icons/md";
 function Footer() {
   return (
     <div className="bg-black text-[#949494] py-20 font-titleFont">
-        <div className="max-w-screen-xl mx-auto flex justify-center items-center gap-12">
+        <div className="max-w-screen-xl sm:mx-2 md:mx-4 lg:mx-auto flex justify-center items-center gap-12">
             {/* ===========LogoIcon Start here========== */}
             <div className="flex flex-col gap-3">
                 <img 
@@ -39,10 +39,10 @@ function Footer() {
               <div>
               <h2 className="text-[1.4rem] font-semibold text-white mb-4">Locate Us</h2>
             <div className="text-base flex flex-col gap-1">
-              <p>Dar Al Salam Mall, Doha, Qatar</p>
-              <p>Mobile: +968 123 4567</p>
-              <p>Phone: +968 123 4567
-              <p>Email: vaskarbhattacharjee03@gmail.com</p>
+              <p className="sm:text-[12px] md:text-[13px] lg:text-[15px]">Mobile: +968 123 4567</p>
+              <p className="sm:text-[12px] md:text-[13px] lg:text-[15px]">Dar Al Salam Mall, Doha, Qatar</p>
+              <p className="sm:text-[12px] md:text-[13px] lg:text-[15px]">Phone: +968 123 4567
+              <p className="sm:text-[12px] md:text-[13px] lg:text-[15px]">Email: vaskarbhattacharjee03@gmail.com</p>
               </p>
             </div>
               </div>
@@ -53,19 +53,27 @@ function Footer() {
             <div>
             <h2 className="text-[1.4rem] font-semibold text-white mb-4">Profile </h2>
             <div className="text-base flex flex-col gap-2">
-            <p className="text-base flex items-center gap-3 hover:text-white duration-300 cursor-pointer"><span>
+            <p className="text-base flex items-center gap-3
+            sm:text-[12px] md:text-[13px] lg:text-[17px]
+            hover:text-white duration-300 cursor-pointer"><span>
               <BsPersonFill />
-              </span>my account</p>
+              </span  >my account</p>
 
-              <p className="text-base flex items-center gap-3 hover:text-white duration-300 cursor-pointer"><span>
+              <p className="text-base flex items-center gap-3
+              sm:text-[12px] md:text-[13px] lg:text-[17px]
+              hover:text-white duration-300 cursor-pointer"><span>
               <BsPaypal />
               </span>CheckOut</p>
 
-              <p className="text-base flex items-center gap-3 hover:text-white duration-300 cursor-pointer"><span>
+              <p className="text-base flex items-center gap-3
+              sm:text-[12px] md:text-[13px] lg:text-[17px]
+              hover:text-white duration-300 cursor-pointer"><span>
               <FaHome />
               </span>Order Tracking</p>
 
-              <p className="text-base flex items-center gap-3 hover:text-white duration-300 cursor-pointer"><span>
+              <p className="text-base flex items-center gap-3
+              sm:text-[12px] md:text-[13px] lg:text-[17px]
+              hover:text-white duration-300 cursor-pointer"><span>
               <MdLocationOn />
               </span>Help & Support</p>
             </div>

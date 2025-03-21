@@ -3,18 +3,17 @@ import { Banner2 } from "../assets";
 function Banner() { 
   return (
     <div
-      className="w-screen h-[85vh] overflow-hidden flex s bg-cover bg-center bg-no-repeat"
+      className="w-screen h-[85vh] overflow-hidden flex  bg-cover bg-center bg-no-repeat"
       style={{ backgroundImage: `url(${Banner2})` }}
     >
       <div
-        className="flex flex-1  inset-0 bg-black/70 gap-0 
-                   justify-end  items-center "
+        className="flex flex-1 sm:flex-col md:flex-col lg:flex-row  inset-0 bg-black/70 gap-0 
+                    items-center justify-center "
       >
         <div
-          className="flex flex-col gap-2 sm:gap-2 md:gap-1 lg:gap-1 items-center sm:ml-0 md:ml-0 lg:ml-15  w-full max-w-[500px]">
-         <div className="flex  gap-2 lg:flex-col    ">
-            
-
+          className="flex flex-col gap-2 sm:gap-2 md:gap-1 lg:gap-1 items-center sm:ml-0 md:ml-15 lg:ml-15  w-full max-w-[500px]">
+         
+         <div className="flex  gap-2 lg:flex-col ">
          <div className="flex items-center sm:items-center lg:w-[500px] lg:justify-start lg:ml-50">
           <h1
   className="text-[30px] sm:text-[50px] md:text-[40px] lg:text-[50px] font-bold text-white 
