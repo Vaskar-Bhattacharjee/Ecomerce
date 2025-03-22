@@ -13,6 +13,7 @@ type Product ={
   category: string;
   image: string;
   quantity: number;
+  price: number;
 };
 type rootState ={
   Hatbazar: {  
@@ -20,7 +21,8 @@ type rootState ={
   }
 }
 function Cart() {
-  const productData = useSelector((state: rootState) => state.Hatbazar.productsData);
+ const productData = useSelector((state: rootState) => state.Hatbazar.productsData);
+  const price = productData.reduce((acc, item) => acc + item.price, 0); 
   console.log(productData);
  
   return (
@@ -40,7 +42,7 @@ function Cart() {
        style={{ fontFamily: "'Poppins', sans-serif" }}
       >Subtotal 
         <span className='text-lg font-semibold text-gray-900'>
-          $200
+          ${price}
         </span>
       </p>
       <p className='flex gap-4 items-start text-base font-medium'

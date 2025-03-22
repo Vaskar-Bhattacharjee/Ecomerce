@@ -9,6 +9,7 @@ const initialState: {
         category: string;
         image: string;
         quantity: number;
+        price: number;
     }[]; 
     userInfo: any; 
 } = {
@@ -38,9 +39,26 @@ export const HatbazarSlice = createSlice({
         },
         clearCart: (state) => {
             state.productsData = [];
+        },
+        incrementQuantity: (state, action) => {
+            const item = state.productsData.find(
+                (item) => item._id === action.payload
+            );
+            if (item) {
+                item.quantity += 1;
+            }
+        },
+        decrementQuantity: (state, action) => {
+            const item = state.productsData.find(
+                (item) => item._id === action.payload
+            )
+            if (item) {
+                item.quantity -= 1;
+            }           
+
         }
     }
 });
-export const { addToCart, deleteToCart, clearCart } = HatbazarSlice.actions;
+export const { addToCart, deleteToCart, clearCart, incrementQuantity, decrementQuantity } = HatbazarSlice.actions;
 export default HatbazarSlice.reducer;
 

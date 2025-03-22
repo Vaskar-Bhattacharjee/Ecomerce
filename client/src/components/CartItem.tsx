@@ -1,7 +1,7 @@
 import { MdOutlineClose } from "react-icons/md";
 import {useSelector} from 'react-redux'
 import { useDispatch } from "react-redux";
-import { addToCart, deleteToCart, clearCart } from "../Redux/HatbazarSlice";
+import {  deleteToCart, clearCart, incrementQuantity, decrementQuantity } from "../Redux/HatbazarSlice";
 import { toast } from "react-toastify";
 
 
@@ -49,11 +49,20 @@ function CartItem() {
                   <p className="text-sm text-gray-700">Quantity</p>
                   <div className="flex items-center gap-4 text-sm font-semibold">
                     <button 
+                    onClick={() => {
+                      if(item.quantity > 1){
+                        dispatch(decrementQuantity(item._id))
+                      }                     
+                    }}
                     className=" border h-5 font-normal text-lg flex
                     items-center justify-center px-2 hover:bg-gray-700
                     hover:text-white duration-300 active:bg-black cursor-pointer">-</button>
                     <span className="text-1xl text-gray-900">{item.quantity}</span>
-                    <button      
+                    <button 
+                    onClick={() => {
+                      dispatch(incrementQuantity(item._id))
+                    }}   
+                       
                     className=" border h-5 font-normal text-lg flex
                     items-center justify-center px-2 hover:bg-gray-700
                     hover:text-white duration-300 active:bg-black cursor-pointer">+</button>
@@ -64,13 +73,21 @@ function CartItem() {
             ))
         }
       </div>
-      <button 
-      onClick={() => {
-        dispatch(clearCart());
-        toast.error("Cart is empty")
-      }}
-      className="bg-red-500 text-white mt-8 
-      ml-7 py-1 px-6 hover:bg-red-800 duration-300">Reset Cart</button>
+    {productData.length !== 0?
+
+      (
+        <button 
+        onClick={() => {
+          dispatch(clearCart());
+          toast.error("Cart is empty")
+        }}
+        className="bg-red-500 text-white mt-8 cursor-pointer
+        ml-7 py-1 px-6 hover:bg-red-800 duration-300">Reset Cart</button>
+      )
+
+    : null
+    }
+
  
      </div>
      
