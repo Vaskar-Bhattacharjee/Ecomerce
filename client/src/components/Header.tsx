@@ -35,7 +35,7 @@ function Header() {
     <div className="w-full bg-white z-40 h-20 border-b-[1px] border-b-gray-800 sticky top-0">
       <div className="container mx-auto flex justify-between items-center h-20 px-4">
         {/* Logo */}
-        <div className="flex-shrink-0 w-[200px] h-[150px]">
+        <div className=" w-[200px] h-[200px]">
           <img className="w-full h-full" src={websiteLogo} alt="logo" />
         </div>
 
@@ -65,9 +65,11 @@ function Header() {
 
         {/* Cart and Shopping Bag Icons */}
         <div className="flex items-center gap-4">
+          <Link to="/login">
           <div className="relative">
             <img src={cart} className="w-8 cursor-pointer" alt="cart" />
           </div>
+          </Link>
           <Link to="/cart">
             <div className="relative">
               <img className="w-8 cursor-pointer" src={shopingBag} alt="shopping bag" />

@@ -38,7 +38,7 @@ function Product() {
         <div className="max-w-screen-xl h-fit mx-auto my-10  flex gap-10">
           <div className="w-1/3 relative lg:ml-20">
             <img 
-            className="w-full h-[500px]" src={details.image} alt={details.title} /> 
+            className="w-full h-[200px] sm:h-[300px] md:h-[300px] lg:h-[500px]" src={details.image} alt={details.title} /> 
             <div className="absolute top-5 right-0">
               {
                 details.isNew && (
