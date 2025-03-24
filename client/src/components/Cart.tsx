@@ -1,5 +1,4 @@
-import { useSelector } from 'react-redux'
- import { Cartimage } from '../assets';
+import { useSelector } from 'react-redux';
 import CartItem from './CartItem';
 import "@fontsource/poppins/500.css"; 
 import { ToastContainer } from 'react-toastify';
@@ -25,14 +24,19 @@ type rootState ={
 }
 function Cart() {
  const productData = useSelector((state: rootState) => state.Hatbazar.productsData);
-  const [totalAmt, setTotalAmt] = useState(0);
-  const Total = totalAmt.toFixed(2) + (totalAmt*0.05).toFixed(1)
+  const [totalAmt, setTotalAmt] = useState<number>(0);
+  const totalAmt2 = totalAmt.toFixed(2);
+  const Tax = totalAmt * 0.05;
+  const Tax2 = Tax.toFixed(2);
+  const Total =  totalAmt + Tax;
+  const Total2 =  Total.toFixed(2);
+  
   useEffect(() => {
     let price = 0;
     productData.map((item) => {
       price += item.price * item.quantity;
       
-      setTotalAmt(price.toFixed(2))
+      setTotalAmt(price);
       })
     }
   , [productData])
@@ -56,14 +60,14 @@ function Cart() {
        style={{ fontFamily: "'Poppins', sans-serif" }}
       >Subtotal: 
         <span className='text-lg font-semibold text-gray-900'>
-          $ {totalAmt}
+          $ {totalAmt2}
         </span>
       </p>
       <p className='flex gap-4 items-center justify-between font-medium'
        style={{ fontFamily: "'Poppins', sans-serif" }}
       >Tax: 
-        <span className='text-[16px] font-normal text-gray-900'>
-          ${`${(totalAmt * 0.05).toFixed(1)}`}(5% of Total Amount)
+        <span className='text-[16px] font-semibold text-gray-900'>
+          $ {Tax2} <span className='text-gray-700 font-normal text-sm'>(5% of Total Amount)</span>
         </span>
       </p>
       <p className='flex gap-4 items-center justify-between text-base font-medium'
@@ -77,7 +81,7 @@ function Cart() {
        style={{ fontFamily: "'Poppins', sans-serif" }}
       >Total 
         <span  className='text-lg 
-        font-semibold text-gray-900'>{Total}</span>
+        font-semibold text-gray-900'>$ {Total2}</span>
       </p>
       <button className='w-[270px] h-[40px] bg-black text-white cursor-pointer hover:bg-gray-900 duration-250 '
       style={{ fontFamily: "'Poppins', sans-serif" }}
@@ -111,8 +115,8 @@ function Cart() {
         </div> */}
         <h1 className='text-3xl font-semibold px-6 py-3'>Your cart is empty</h1>
         <Link to ='/'>
-        <button className='text-2xl font-semibold
-         bg-gray-800 px-6 py-3 cursor-pointer
+        <button className='text-xl font-semibold
+         bg-gray-800 px-4 py-2 cursor-pointer
           rounded-[10px] text-white flex gap-3'> <FaArrowLeft 
          className='mt-1' /> Go back to Shopping</button>
         </Link>
