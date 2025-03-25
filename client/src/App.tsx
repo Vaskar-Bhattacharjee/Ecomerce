@@ -12,6 +12,7 @@ import {
   ScrollRestoration,
   createBrowserRouter,
 } from 'react-router-dom';
+import ShopPage from './pages/ShopPage';
 
 
 
@@ -46,7 +47,11 @@ const router = createBrowserRouter([
     {
       path: "/login",
       element: <Login />
-    }
+    },
+    {
+      path: "/shop",
+      element: <ShopPage />
+    },
   ]
  } 
 ])

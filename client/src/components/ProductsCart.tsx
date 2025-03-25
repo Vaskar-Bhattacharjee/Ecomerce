@@ -29,7 +29,7 @@ function ProductsCart({ product }: { product: Product }) {
 
 
   const handleDetails =() =>{
-    console.log("Navigating with product:", product); // Debug log
+    console.log("Navigating with product:", product); 
     Navigate(`/product/${rootId}`, { state: product });
     
 }
