@@ -1,13 +1,21 @@
-import { githubLogo, googleLogo } from "../assets";
+import {
+  createUserWithEmailAndPassword,
+  getAuth,
+  onAuthStateChanged,
+  GoogleAuthProvider,
+  signInWithPopup,
+  signOut,
+  User
+} from "firebase/auth";
+import { useEffect, useState } from "react";
 import { toast, ToastContainer } from "react-toastify";
-import { getAuth, signInWithPopup, GoogleAuthProvider
-  , createUserWithEmailAndPassword } from "firebase/auth";
-import { useState } from "react";
+import { githubLogo, googleLogo } from "../assets";
 
 function Login() {
   const auth = getAuth();
   const provider = new GoogleAuthProvider();
   const [isLogin, setIsLogin] = useState(true); // Toggle between login/signup
+  const [user, setUser] = useState<User | null>(null);
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -16,6 +24,14 @@ function Login() {
     agreeToTerms: false
   });
 
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, (firebaseUser) => {
+      setUser(firebaseUser); 
+
+    });
+  
+    return () => unsubscribe();
+  }, []);
   const handleGoogleLogin = (e: React.MouseEvent) => {
     e.preventDefault();
     signInWithPopup(auth, provider)
@@ -30,17 +46,18 @@ function Login() {
       });
   };
 
-  // const handleSignOut = (e: React.MouseEvent) => {
-  //   e.preventDefault();
-  //   signOut(auth)
-  //     .then(() => {
-  //       toast.success("Signed out successfully");
-  //     })
-  //     .catch((error) => {
-  //       toast.error("Error signing out");
-  //       console.log("Error signing out:", error);
-  //     });
-  // };
+  const handleSignOut = (e: React.MouseEvent) => {
+    e.preventDefault();
+    signOut(auth)
+      .then(() => {
+        setIsLogin(!isLogin)
+        toast.success("Signed out successfully");
+      })
+      .catch((error) => {
+        toast.error("Error signing out");
+        console.log("Error signing out:", error);
+      });
+  };
 
   const handleSignUp = (e: React.FormEvent) => {
     e.preventDefault();
@@ -52,6 +69,15 @@ function Login() {
       toast.error("Please agree to terms and privacy policy");
       return;
     }
+    // const handleSignOut =(e: React.MouseEvent) => {
+    //   e.preventDefault();
+    //   const auth = getAuth();
+    //     signOut(auth).then(() => {
+    //       // Sign-out successful.
+    //     }).catch((error) => {
+    //       // An error happened.
+    //     })
+    // }
 
     createUserWithEmailAndPassword(auth, formData.email, formData.password)
       .then((userCredential) => {
@@ -76,7 +102,19 @@ function Login() {
 
   return (
     <div className="w-full flex flex-col items-center justify-center gap-10 py-20 px-4">
-      <div className="w-full max-w-md bg-white rounded-lg shadow-md p-8">
+      {user? (
+        <div>
+              <h1 className="text-2xl font-bold text-gray-800 mb-2 sm:mb-2 md:mb-2 lg:mb-3">{`Hello! ${user.displayName}`}</h1>
+              <button
+              onClick={handleSignOut}
+              className="w-full border border-black text-black text-semibold py-2
+               px-4 rounded-md hover:bg-gray-200 cursor-pointer transition duration-300"
+              >Log out</button>
+        </div>
+    
+      ):(
+
+        <div className="w-full max-w-md bg-white rounded-lg shadow-md p-8">
         <h2 className="text-2xl font-bold text-center mb-6 text-gray-800">
           {isLogin ? 'Welcome Back' : 'Create Account'}
         </h2>
@@ -181,7 +219,8 @@ function Login() {
         <div className="space-y-4">
           <button
             onClick={handleGoogleLogin}
-            className="w-full flex items-center justify-center gap-2 px-4 py-2 border border-gray-300 rounded-md hover:border-blue-500 hover:bg-blue-50 transition duration-300"
+            className="w-full flex items-center justify-center gap-2 px-4 py-2 border cursor-pointer
+             border-gray-300 rounded-md hover:border-blue-500 hover:bg-blue-50 transition duration-300"
           >
             <img className="w-5" src={googleLogo} alt="Google logo" />
             <span className="text-sm font-medium text-gray-700">
@@ -189,7 +228,8 @@ function Login() {
             </span>
           </button>
 
-          <button className="w-full flex items-center justify-center gap-2 px-4 py-2 border border-gray-300 rounded-md hover:border-gray-800 hover:bg-gray-50 transition duration-300">
+          <button className="w-full flex items-center justify-center gap-2 px-4 py-2 border cursor-pointer
+           border-gray-300 rounded-md hover:border-gray-800 hover:bg-gray-50 transition duration-300">
             <img className="w-5" src={githubLogo} alt="GitHub logo" />
             <span className="text-sm font-medium text-gray-700">
               Continue with GitHub
@@ -206,8 +246,11 @@ function Login() {
               ? "Don't have an account? Sign Up" 
               : "Already have an account? Sign In"}
           </button>
+   
         </div>
       </div>
+      )}
+  
 
       <ToastContainer
         position="top-right"
