@@ -14,7 +14,7 @@ import { githubLogo, googleLogo } from "../assets";
 function Login() {
   const auth = getAuth();
   const provider = new GoogleAuthProvider();
-  const [isLogin, setIsLogin] = useState(true); // Toggle between login/signup
+  const [isLogin, setIsLogin] = useState(true);
   const [user, setUser] = useState<User | null>(null);
   const [formData, setFormData] = useState({
     name: "",
@@ -31,7 +31,7 @@ function Login() {
     });
   
     return () => unsubscribe();
-  }, []);
+  });
   const handleGoogleLogin = (e: React.MouseEvent) => {
     e.preventDefault();
     signInWithPopup(auth, provider)
