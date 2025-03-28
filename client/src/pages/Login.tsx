@@ -1,12 +1,12 @@
-
-import { useEffect, useState } from "react";
+import Auth from '../firebase/Auth'
+import { useState } from "react";
 import { toast, ToastContainer } from "react-toastify";
 import { githubLogo, googleLogo } from "../assets";
 
 function Login() {
 
   const [isLogin, setIsLogin] = useState(true);
-  const [user, setUser] = useState<User | null>(null);
+  const [user, setUser] = useState(null);
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -15,39 +15,27 @@ function Login() {
     agreeToTerms: false
   });
 
-  useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, (firebaseUser) => {
-      setUser(firebaseUser); 
-
-    });
-  
-    return () => unsubscribe();
-  });
-  const handleGoogleLogin = (e: React.MouseEvent) => {
+ 
+  const handleGoogleLogin = async (e: React.MouseEvent) => {
     e.preventDefault();
-    signInWithPopup(auth, provider)
-      .then((result) => {
-        const user = result.user;
-        console.log(user);
-        toast.success(`Welcome ${user.displayName || 'User'}!`);
-      })
-      .catch((error) => {
-        console.log(error);
-        toast.error("Google login failed");
-      });
+    try {
+      await Auth.loginWithGoogle();
+      // If loginWithGoogle doesn't return the user, you might need to get it from Auth
+      const currentUser = Auth.getCurrentUser(); // Assuming this method exists
+      setIsLogin(true);
+      setUser(currentUser);
+      toast.success("Logged in with Google successfully!");
+    } catch (error) {
+      console.error("Google login error:", error);
+      toast.error("Failed to login with Google. Please try again.");
+    }
   };
 
   const handleSignOut = (e: React.MouseEvent) => {
     e.preventDefault();
-    signOut(auth)
-      .then(() => {
-        setIsLogin(!isLogin)
-        toast.success("Signed out successfully");
-      })
-      .catch((error) => {
-        toast.error("Error signing out");
-        console.log("Error signing out:", error);
-      });
+    Auth.logout();
+    setIsLogin(false);
+    setUser(null);
   };
 
   const handleSignUp = (e: React.FormEvent) => {
@@ -55,33 +43,17 @@ function Login() {
     if (formData.password !== formData.confirmPassword) {
       toast.error("Passwords don't match");
       return;
+      
     }
     if (!formData.agreeToTerms) {
       toast.error("Please agree to terms and privacy policy");
       return;
     }
-    // const handleSignOut =(e: React.MouseEvent) => {
-    //   e.preventDefault();
-    //   const auth = getAuth();
-    //     signOut(auth).then(() => {
-    //       // Sign-out successful.
-    //     }).catch((error) => {
-    //       // An error happened.
-    //     })
-    // }
 
-    createUserWithEmailAndPassword(auth, formData.email, formData.password)
-      .then((userCredential) => {
-        const user = userCredential.user;
-        console.log(user);
-        toast.success(`Welcome ${formData.name}!`);
-        
-      })
-      .catch((error) => {
-        toast.error(error.message);
-        console.log(error);
-      });
+    Auth.signUp(formData.email, formData.password);
   };
+   
+
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value, type, checked } = e.target;
@@ -225,6 +197,7 @@ function Login() {
 
             <button
               type="submit"
+              onClick={handleSignUp}
               className="w-full bg-transparent text-black border
               cursor-pointer border-e-black py-2 px-4 rounded-md hover:bg-gray-600 hover:text-white  transition duration-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
             >
@@ -240,12 +213,12 @@ function Login() {
         </div>
 
         <div className="space-y-4">
-          <button
+        <button
             onClick={handleGoogleLogin}
-            className="w-full flex items-center justify-center gap-2 px-4 py-2 border cursor-pointer
-             border-gray-300 rounded-md hover:border-blue-500 hover:bg-blue-50 transition duration-300"
+            className="w-full flex items-center justify-center gap-2 px-4 py-2 border cursor-pointer border-gray-300 rounded-md hover:border-blue-500 hover:bg-blue-50 transition duration-300"
+            aria-label="Continue with Google"
           >
-            <img className="w-5" src={googleLogo} alt="Google logo" />
+            <img className="w-5" src={googleLogo} alt="" role="presentation" />
             <span className="text-sm font-medium text-gray-700">
               Continue with Google
             </span>

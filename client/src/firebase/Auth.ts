@@ -3,14 +3,14 @@ import {
     getAuth,
     signInWithEmailAndPassword,
     signOut,
+    GoogleAuthProvider,
+    signInWithPopup,
     User
   } from "firebase/auth";
 
 
   class Auth {
-      private auth = getAuth();
-
-    
+      private auth = getAuth();       
 
       async signUp(email: string, password: string){
         try {
@@ -32,6 +32,15 @@ import {
         console.log(error);
        }
 
+  }
+  async loginWithGoogle() {
+    try {
+      const provider = new GoogleAuthProvider();
+      const result = await signInWithPopup(this.auth, provider);
+      console.log(result);
+    } catch (error) {
+      console.log(error);
+    }
   }
 
   getCurrentUser(): User | null {
