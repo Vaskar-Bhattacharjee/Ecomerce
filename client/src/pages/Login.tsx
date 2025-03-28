@@ -1,19 +1,10 @@
-import {
-  createUserWithEmailAndPassword,
-  getAuth,
-  onAuthStateChanged,
-  GoogleAuthProvider,
-  signInWithPopup,
-  signOut,
-  User
-} from "firebase/auth";
+
 import { useEffect, useState } from "react";
 import { toast, ToastContainer } from "react-toastify";
 import { githubLogo, googleLogo } from "../assets";
 
 function Login() {
-  const auth = getAuth();
-  const provider = new GoogleAuthProvider();
+
   const [isLogin, setIsLogin] = useState(true);
   const [user, setUser] = useState<User | null>(null);
   const [formData, setFormData] = useState({
@@ -84,7 +75,7 @@ function Login() {
         const user = userCredential.user;
         console.log(user);
         toast.success(`Welcome ${formData.name}!`);
-        // You might want to update user profile with displayName here
+        
       })
       .catch((error) => {
         toast.error(error.message);
@@ -101,7 +92,7 @@ function Login() {
   };
 
   return (
-    <div className="w-full flex flex-col items-center justify-center gap-10 py-20 px-4">
+    <div className="w-full flex flex-col items-center h-[110vh] justify-center gap-10 py-20 px-4">
       {user? (
         <div>
               <h1 className="text-2xl font-bold text-gray-800 mb-2 sm:mb-2 md:mb-2 lg:mb-3">{`Hello! ${user.displayName}`}</h1>
@@ -118,50 +109,82 @@ function Login() {
         <h2 className="text-2xl font-bold text-center mb-6 text-gray-800">
           {isLogin ? 'Welcome Back' : 'Create Account'}
         </h2>
-
-        {!isLogin && (
-          <form onSubmit={handleSignUp} className="mb-6">
+        {isLogin && (
+          <form action="">
             <div className="mb-4">
-              <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-1">
-                Full Name
-              </label>
-              <input
-                type="text"
-                id="name"
-                name="name"
-                value={formData.name}
-                onChange={handleChange}
-                className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-                required
-              />
-            </div>
 
-            <div className="mb-4">
-              <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1">
-                Email Address
-              </label>
               <input
                 type="email"
                 id="email"
                 name="email"
+                placeholder="Enter you email"
                 value={formData.email}
                 onChange={handleChange}
-                className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="w-full px-4 py-2 border border-e-black rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                required
+              />
+            </div>
+            <div className="mb-4">
+          
+              <input
+                type="password"
+                name="password"
+                placeholder="Enter you password"
+                value={formData.password}
+                onChange={handleChange}
+                className="w-full px-4 py-2 border border-e-black rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                required
+              />
+            </div>
+            <button
+              type="submit"
+              className="w-full mb-4 bg-transparent text-black border text-[18px]
+              hover:text-white border-e-black text-semibold py-2 px-4 rounded-md
+               hover:bg-gray-600 transition duration-300 cursor-pointer"
+            >
+              Log In
+            </button>
+          </form>
+        )}
+        {!isLogin && (
+          <form onSubmit={handleSignUp} className="mb-6">
+            <div className="mb-4">
+     
+              <input
+                type="text"
+                id="name"
+                name="name"
+                placeholder="Full Name"
+                value={formData.name}
+                onChange={handleChange}
+                className="w-full px-4 py-2 border border-e-black rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                 required
               />
             </div>
 
             <div className="mb-4">
-              <label htmlFor="password" className="block text-sm font-medium text-gray-700 mb-1">
-                Password
-              </label>
+ 
+              <input
+                type="email"
+                id="email"
+                name="email"
+                placeholder="Email Address"
+                value={formData.email}
+                onChange={handleChange}
+                className="w-full px-4 py-2 border border-e-black rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                required
+              />
+            </div>
+
+            <div className="mb-4">
               <input
                 type="password"
                 id="password"
                 name="password"
+                placeholder="Enter password"
                 value={formData.password}
                 onChange={handleChange}
-                className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="w-full px-4 py-2 border border-e-black rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                 required
                 minLength={6}
               />
@@ -169,16 +192,15 @@ function Login() {
 
             {!isLogin && (
               <div className="mb-4">
-                <label htmlFor="confirmPassword" className="block text-sm font-medium text-gray-700 mb-1">
-                  Confirm Password
-                </label>
+          
                 <input
                   type="password"
                   id="confirmPassword"
                   name="confirmPassword"
+                  placeholder="Confirm Password"
                   value={formData.confirmPassword}
                   onChange={handleChange}
-                  className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className="w-full px-4 py-2 border border-e-black rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                   required
                   minLength={6}
                 />
@@ -203,9 +225,10 @@ function Login() {
 
             <button
               type="submit"
-              className="w-full bg-blue-600 text-white py-2 px-4 rounded-md hover:bg-blue-700 transition duration-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+              className="w-full bg-transparent text-black border
+              cursor-pointer border-e-black py-2 px-4 rounded-md hover:bg-gray-600 hover:text-white  transition duration-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
             >
-              {isLogin ? 'Sign In' : 'Sign Up'}
+              Sign Up
             </button>
           </form>
         )}
@@ -252,18 +275,23 @@ function Login() {
       )}
   
 
-      <ToastContainer
-        position="top-right"
-        autoClose={3000}
-        hideProgressBar={false}
-        newestOnTop={false}
-        closeOnClick
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-        theme="light"
-      />
+  <ToastContainer
+  position="top-right"
+  autoClose={3000}
+  hideProgressBar={false}
+  newestOnTop={false}
+  closeOnClick
+  rtl={false}
+  pauseOnFocusLoss
+  draggable
+  pauseOnHover
+  theme="dark"
+  toastStyle={{
+    backgroundColor: "#1f2937",
+    color: "#ffffff"
+  }}
+
+/>
     </div>
   );
 }
