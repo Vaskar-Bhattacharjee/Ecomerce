@@ -5,7 +5,9 @@ import Footer from './components/Footer';
 import ProductPage from './pages/ProductPage';
 import { productsData } from './api/Api';
 import CartPage from './pages/CartPage';
-import Login from './pages/Login';
+import Login from './pages/LoginPage';
+import Precover from './pages/pRecover';
+
 import {
   Outlet,
   RouterProvider,
@@ -52,6 +54,10 @@ const router = createBrowserRouter([
       path: "/shop",
       element: <ShopPage />
     },
+    {
+      path: "/password-recovery",
+      element: <Precover />
+    }
   ]
  } 
 ])

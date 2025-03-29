@@ -3,6 +3,7 @@ import { useState } from "react";
 import { toast, ToastContainer } from "react-toastify";
 import { githubLogo, googleLogo } from "../assets";
 import { User } from 'firebase/auth';
+import {Link} from 'react-router-dom';
 
 function Login() {
 
@@ -254,6 +255,10 @@ function Login() {
           </button>
    
         </div>
+        <Link to = "/password-recovery">
+        <p className='text-gray-600 cursor-pointer text-center mt-3'>Forget Password ?</p>
+        </Link>
+        
       </div>
       )}
   

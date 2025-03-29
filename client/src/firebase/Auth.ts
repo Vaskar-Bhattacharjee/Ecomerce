@@ -6,7 +6,8 @@ import {
     GoogleAuthProvider,
     signInWithPopup,
     User,
-    updateProfile
+    updateProfile,
+    sendPasswordResetEmail 
   } from "firebase/auth";
 
 
@@ -68,7 +69,13 @@ import {
     }
 
   }
+  async passwordReset(email: string) {
+    try {
+     await sendPasswordResetEmail(this.auth, email)
+  } catch (error) {
+    console.log(error);
+  }
 
-}
+}}
 
 export default new Auth();
