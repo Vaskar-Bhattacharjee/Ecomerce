@@ -2,11 +2,12 @@ import Auth from '../firebase/Auth'
 import { useState } from "react";
 import { toast, ToastContainer } from "react-toastify";
 import { githubLogo, googleLogo } from "../assets";
+import { User } from 'firebase/auth';
 
 function Login() {
 
   const [isLogin, setIsLogin] = useState(true);
-  const [user, setUser] = useState(null);
+  const [user, setUser] = useState<User | null>(null);
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -38,21 +39,30 @@ function Login() {
     setUser(null);
   };
 
-  const handleSignUp = (e: React.FormEvent) => {
+  const handleSignUp = async (e: React.FormEvent) => {
     e.preventDefault();
+    
     if (formData.password !== formData.confirmPassword) {
-      toast.error("Passwords don't match");
-      return;
-      
+        toast.error("Passwords don't match");
+        return;
     }
+    
     if (!formData.agreeToTerms) {
-      toast.error("Please agree to terms and privacy policy");
-      return;
+        toast.error("Please agree to terms and privacy policy");
+        return;
     }
 
-    Auth.signUp(formData.email, formData.password);
-  };
-   
+    try {
+        const user = await Auth.signUp(formData.email, formData.password, formData.name);
+        if (user) {
+            setUser(user);
+            toast.success("Account created successfully!");
+        }
+    } catch (error) {
+        toast.error( "Account creation failed");
+        console.error("Account creation failed:", error);
+    }
+};
 
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {

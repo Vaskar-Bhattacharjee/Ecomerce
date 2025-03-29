@@ -5,21 +5,34 @@ import {
     signOut,
     GoogleAuthProvider,
     signInWithPopup,
-    User
+    User,
+    updateProfile
   } from "firebase/auth";
 
 
   class Auth {
       private auth = getAuth();       
 
-      async signUp(email: string, password: string){
+      async signUp(email: string, password: string, name: string): Promise<User | null> {
         try {
-           const userCredential = await createUserWithEmailAndPassword(this.auth, email, password)
-            console.log('user created')
-            return userCredential.user;
-       
+            // 1. Create user account
+            const userCredential = await createUserWithEmailAndPassword(this.auth, email, password);
+            
+            // 2. Update user profile with display name
+            if (userCredential.user) {
+                await updateProfile(userCredential.user, {
+                    displayName: name
+                });
+                
+                // 3. Force refresh to get updated user data
+                await userCredential.user.reload();
+                
+                return this.auth.currentUser; // Return updated user
+            }
+            return null;
         } catch (error) {
-            console.log(error)
+            console.log(error);
+            return null;
         }
       }
 
