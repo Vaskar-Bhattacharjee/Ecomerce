@@ -6,12 +6,12 @@ const TermsAndPrivacy = () => {
   return (
     <div className="max-w-4xl mx-auto p-6 font-sans">
       {/* Tabs */}
-      <div className="flex border-b border-gray-200 mb-6">
+      <div className="flex gap-2 border-b border-gray-200 mb-6">
         <button
           onClick={() => setActiveTab('terms')}
-          className={`px-6 py-3 font-medium text-sm rounded-t-lg transition-colors ${
+          className={`px-6 py-3 font-medium duration-200 text-sm rounded-t-lg transition-colors cursor-pointer ${
             activeTab === 'terms'
-              ? 'bg-blue-600 text-white'
+              ? 'bg-black text-white'
               : 'text-gray-600 hover:bg-gray-100'
           }`}
         >
@@ -19,9 +19,9 @@ const TermsAndPrivacy = () => {
         </button>
         <button
           onClick={() => setActiveTab('privacy')}
-          className={`px-6 py-3 font-medium text-sm rounded-t-lg transition-colors ${
+          className={`px-6 py-3 font-medium duration-200 text-sm rounded-t-lg transition-colors cursor-pointer ${
             activeTab === 'privacy'
-              ? 'bg-blue-600 text-white'
+              ? 'bg-black text-white'
               : 'text-gray-600 hover:bg-gray-100'
           }`}
         >
@@ -41,7 +41,7 @@ const TermsAndPrivacy = () => {
   );
 };
 
-// Sub-components for content
+
 const TermsContent = () => (
   <div>
     <h2 className="text-2xl font-bold text-gray-800 mb-4">Terms of Service</h2>
