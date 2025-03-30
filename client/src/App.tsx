@@ -6,7 +6,8 @@ import ProductPage from './pages/ProductPage';
 import { productsData } from './api/Api';
 import CartPage from './pages/CartPage';
 import Login from './pages/LoginPage';
-import Precover from './pages/pRecover';
+import Precover from './pages/Precover';
+import TermService from './pages/TermService';
 
 import {
   Outlet,
@@ -57,6 +58,10 @@ const router = createBrowserRouter([
     {
       path: "/password-recovery",
       element: <Precover />
+    },
+    {
+      path: "/TermsAndPrivacy",
+      element: <TermService />
     }
   ]
  } 

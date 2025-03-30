@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { toast, ToastContainer } from "react-toastify";
  import Auth from '../firebase/Auth';
+import { BsArrowLeft } from "react-icons/bs";
+import { Link } from "react-router-dom";
 
 function PrRecovery() {
   const [email, setEmail] = useState("");
@@ -26,7 +28,7 @@ function PrRecovery() {
   return (
     <div className="w-full flex flex-col items-center h-[90vh] justify-center gap-10 py-20 px-4">
       <div className="w-full max-w-md bg-white rounded-lg shadow-md p-8">
-        <h2 className="text-2xl font-bold text-center mb-6 text-gray-800">
+        <h2 className="text-2xl font-bold text-center mb-6 text-black">
           Password Recovery
         </h2>
 
@@ -47,7 +49,7 @@ function PrRecovery() {
           </div>
         ) : (
           <>
-            <p className="mb-6 text-gray-600 text-center">
+            <p className="mb-6 text-black text-center">
               Enter your email address and we'll send you a link to reset your password.
             </p>
             
@@ -73,15 +75,17 @@ function PrRecovery() {
                 {isLoading ? 'Sending...' : 'Send Reset Link'}
               </button>
             </form>
-
-            <div className="mt-6 text-center">
-              <a
-                href="/login"
-                className="text-sm text-blue-600 hover:underline focus:outline-none"
+           <Link to="/login">
+           <div className="mt-6 flex justify-center items-center gap-2 text-center">
+              <span><BsArrowLeft /></span>
+              <p                
+                className="text-sm text-gray-600 hover:underline focus:outline-none"
               >
                 Back to Login
-              </a>
+              </p>
             </div>
+           </Link>
+         
           </>
         )}
       </div>

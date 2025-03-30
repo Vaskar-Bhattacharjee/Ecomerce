@@ -89,7 +89,7 @@ function Login() {
       ):(
 
         <div className="w-full max-w-md bg-white rounded-lg shadow-md p-8">
-        <h2 className="text-2xl font-bold text-center mb-6 text-gray-800">
+        <h2 className="text-2xl font-bold text-center mb-6 text-black">
           {isLogin ? 'Welcome Back' : 'Create Account'}
         </h2>
         {isLogin && (
@@ -201,7 +201,7 @@ function Login() {
                   className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded"
                 />
                 <label htmlFor="agreeToTerms" className="ml-2 block text-sm text-gray-700">
-                  I agree to the <a href="#" className="text-blue-600 hover:underline">Terms</a> and <a href="#" className="text-blue-600 hover:underline">Privacy Policy</a>
+                  I agree to the <a href="/TermsAndPrivacy" className="text-blue-600 hover:underline">Terms</a> and <a href="/TermsAndPrivacy" className="text-blue-600 hover:underline">Privacy Policy</a>
                 </label>
               </div>
             )}
