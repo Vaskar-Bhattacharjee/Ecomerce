@@ -1,26 +1,30 @@
 import { createSlice } from "@reduxjs/toolkit";
 
+type Product = {
+    _id: string;
+    title: string;
+    category: string;
+    image: string;
+    quantity: number;
+    price: number;
+  };
 
-
-const initialState: { 
-    productsData: { 
-        _id: string;
-        title: string;
-        category: string;
-        image: string;
-        quantity: number;
-        price: number;
-    }[]; 
-    userInfo: {
-        _id: string;
-        name: string;
-        email: string;
-    }[]; 
-} = {
+type User = {
+    _id: string;
+    name: string;
+    email: string;
+    image?: string; // Make image optional
+  };
+  
+  type InitialState = {
+    productsData: Product[];
+    userInfo: User | null; // Change to single user or null
+  };
+  
+  const initialState: InitialState = {
     productsData: [],
-    userInfo: [],
-};
-
+    userInfo: null, // Initialize as null
+  };
 
 export const HatbazarSlice = createSlice({
     name: "hatbazar",
@@ -65,7 +69,7 @@ export const HatbazarSlice = createSlice({
             state.userInfo = action.payload;
         },
         removeUser: (state) => {
-            state.userInfo = [];
+            state.userInfo = null;
         }
     }
 });

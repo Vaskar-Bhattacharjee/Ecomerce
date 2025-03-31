@@ -15,15 +15,22 @@ type Product = {
   oldPrice: number,
   price: number,
 }
+type User ={
+  _id: string,
+  image?: string,
+  name: string,
+}
 
 type rootState = {
   Hatbazar: {
-    productsData: Product[]
+    productsData: Product[],
+    userInfo: User |  null,
   }
-}
+};
 
 function Header() {
   const productData = useSelector((state: rootState) => state.Hatbazar.productsData);
+  const userInfo = useSelector((state: rootState) => state.Hatbazar.userInfo);
   const navigate = useNavigate();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false); // State for mobile menu
 
@@ -62,21 +69,78 @@ function Header() {
         </div>
 
         {/* Cart and Shopping Bag Icons */}
+
         <div className="flex items-center gap-4">
-          <Link to="/login">
-          <div className="relative">
-            <img src={cart} className="w-8 cursor-pointer" alt="cart" />
+  {/* Shopping Cart - Always Visible */}
+  <Link to="/cart">
+    <div className="relative">
+      <img className="w-8 cursor-pointer" src={shopingBag} alt="shopping bag" />
+      <span className="absolute w-4 left-2 top-2.5 text-sm flex items-center justify-center font-semibold text-black">
+        {productData.length}
+      </span>
+    </div>
+  </Link>
+
+  {/* User Profile - Clickable to Login Page */}
+  <Link to="/login">
+    {userInfo ? (
+      <div className='flex gap-2 items-center'>
+        {userInfo.image ? (
+          <img 
+            src={userInfo.image} 
+            className="w-8 h-8 rounded-full object-cover cursor-pointer" 
+            alt="user profile" 
+          />
+        ) : (
+          <div className="w-1 h-1 rounded-full  flex items-center justify-center">
+            {/* Empty div when no image */}
           </div>
-          </Link>
-          <Link to="/cart">
-            <div className="relative">
+        )}
+        <p className='underline text-sm'>{userInfo.name}</p>
+      </div>
+    ) : (
+      <div className="w-8 h-8 rounded-full bg-gray-300 border border-gray-400 flex items-center justify-center">
+        <img 
+          src={cart} 
+          className="w-5 h-5 cursor-pointer" 
+          alt="login" 
+        />
+      </div>
+    )}
+  </Link>
+</div>
+        {/* <div className="flex items-center gap-4">
+        <Link to="/cart">
+      
+            <div className="relative ">
               <img className="w-8 cursor-pointer" src={shopingBag} alt="shopping bag" />
               <span className="absolute w-4 left-2 top-2.5 text-sm flex items-center justify-center font-semibold text-black">
                 {productData.length}
               </span>
             </div>
           </Link>
-        </div>
+          <Link to="/login">
+          <div className="relative px-[2px] py-[1px] rounded-[50%] bg-gray-300 border-[1px]">
+              <img src={cart} className="w-7 cursor-pointer" alt="cart" />
+            </div>
+
+
+        </Link>
+         
+        </div> */}
+                  {/* {userInfo ? (
+            <div className='flex gap-2'>
+              {userInfo.image && (
+                <img src={userInfo.image} className="w-8 cursor-pointer" alt="user profile" />
+              )}
+              <p className='underline text-sm'>{userInfo.name}</p>
+            </div>
+          ) : (
+            <div className="relative px-[2px] py-[1px] rounded-[50%] bg-gray-300 border-[1px]">
+              <img src={cart} className="w-7 cursor-pointer" alt="cart" />
+            </div>
+          )
+          } */}
 
         {/* Mobile Menu Button */}
         <div className="md:hidden flex items-center">

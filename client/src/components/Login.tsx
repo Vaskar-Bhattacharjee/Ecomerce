@@ -1,12 +1,14 @@
 import Auth from '../firebase/Auth'
-import { useState } from "react";
+import { useState  } from "react";
 import { toast, ToastContainer } from "react-toastify";
 import { githubLogo, googleLogo } from "../assets";
 import { User } from 'firebase/auth';
 import {Link} from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { addUser, removeUser } from '../Redux/HatbazarSlice';
 
 function Login() {
-
+  const dispatch = useDispatch()
   const [isLogin, setIsLogin] = useState(true);
   const [user, setUser] = useState<User | null>(null);
   const [formData, setFormData] = useState({
@@ -26,6 +28,13 @@ function Login() {
       const currentUser = Auth.getCurrentUser(); // Assuming this method exists
       setIsLogin(true);
       setUser(currentUser);
+      dispatch(
+        addUser({
+          _id: currentUser?.uid,
+          name: currentUser?.displayName,
+          email: currentUser?.email,
+        })
+      )
       toast.success("Logged in with Google successfully!");
     } catch (error) {
       console.error("Google login error:", error);
@@ -35,6 +44,7 @@ function Login() {
 
   const handleSignOut = (e: React.MouseEvent) => {
     e.preventDefault();
+    dispatch(removeUser())
     Auth.logout();
     setIsLogin(false);
     setUser(null);
@@ -57,6 +67,14 @@ function Login() {
         const user = await Auth.signUp(formData.email, formData.password, formData.name);
         if (user) {
             setUser(user);
+            const currentUser = Auth.getCurrentUser();
+            dispatch(
+              addUser({
+                _id: currentUser?.uid,
+                name: currentUser?.displayName,
+                email: currentUser?.email,
+              })
+            )
             toast.success("Account created successfully!");
         }
     } catch (error) {

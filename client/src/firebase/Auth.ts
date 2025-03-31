@@ -30,6 +30,7 @@ import {
                 
                 return this.auth.currentUser; // Return updated user
             }
+            
             return null;
         } catch (error) {
             console.log(error);
