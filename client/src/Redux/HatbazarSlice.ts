@@ -11,10 +11,14 @@ const initialState: {
         quantity: number;
         price: number;
     }[]; 
-    userInfo: any; 
+    userInfo: {
+        _id: string;
+        name: string;
+        email: string;
+    }[]; 
 } = {
     productsData: [],
-    userInfo: null,
+    userInfo: [],
 };
 
 
@@ -56,9 +60,20 @@ export const HatbazarSlice = createSlice({
                 item.quantity -= 1;
             }           
 
+        },
+        addUser: (state, action) => {
+            state.userInfo = action.payload;
+        },
+        removeUser: (state) => {
+            state.userInfo = [];
         }
     }
 });
-export const { addToCart, deleteToCart, clearCart, incrementQuantity, decrementQuantity } = HatbazarSlice.actions;
+export const { addToCart,
+    deleteToCart,
+    clearCart,
+    incrementQuantity,
+    decrementQuantity,
+    addUser,
+    removeUser } = HatbazarSlice.actions;
 export default HatbazarSlice.reducer;
-
