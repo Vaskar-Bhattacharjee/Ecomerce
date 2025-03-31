@@ -1,16 +1,20 @@
 import Auth from '../firebase/Auth'
-import { useState  } from "react";
+import { useState, useEffect  } from "react";
 import { toast, ToastContainer } from "react-toastify";
 import { githubLogo, googleLogo } from "../assets";
 import { User } from 'firebase/auth';
 import {Link} from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { addUser, removeUser } from '../Redux/HatbazarSlice';
+import { useSelector } from 'react-redux';
+
 
 function Login() {
   const dispatch = useDispatch()
   const [isLogin, setIsLogin] = useState(true);
-  const [user, setUser] = useState<User | null>(null);
+  const userInfo = useSelector((state) => state.Hatbazar.userInfo);
+  const [user, setUser] = useState<User | null>( null);
+  console.log(user)
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -25,7 +29,9 @@ function Login() {
     try {
       await Auth.loginWithGoogle();
       // If loginWithGoogle doesn't return the user, you might need to get it from Auth
-      const currentUser = Auth.getCurrentUser(); // Assuming this method exists
+      const currentUser = Auth.getCurrentUser();
+
+      // Assuming this method exists
       setIsLogin(true);
       setUser(currentUser);
       dispatch(
@@ -41,7 +47,17 @@ function Login() {
       toast.error("Failed to login with Google. Please try again.");
     }
   };
-
+ const handleLogin = (e: React.FormEvent) => {
+   e.preventDefault();
+   try {
+     Auth.login(formData.email, formData.password);
+     setIsLogin(true);
+     toast.success("Logged in successfully!");
+   } catch (error) {
+     console.error("Login error:", error);
+     toast.error("Failed to login. Please try again.");
+   }
+ }
   const handleSignOut = (e: React.MouseEvent) => {
     e.preventDefault();
     dispatch(removeUser())
@@ -50,6 +66,24 @@ function Login() {
     setUser(null);
   };
 
+  useEffect(() => {
+    const unsubscribe = Auth.onAuthStateChanged((user) => {
+      if (user) {
+       
+        dispatch(addUser({
+          _id: user.uid,
+          name: user.displayName,
+          email: user.email
+        }));
+      } else {
+        
+        dispatch(removeUser());
+      }
+    })
+    return () => {
+      unsubscribe();
+    }
+  }, [dispatch]);
   const handleSignUp = async (e: React.FormEvent) => {
     e.preventDefault();
     
@@ -94,9 +128,9 @@ function Login() {
 
   return (
     <div className="w-full flex flex-col items-center h-[110vh] justify-center gap-10 py-20 px-4">
-      {user? (
+      { userInfo ? (
         <div>
-              <h1 className="text-2xl font-bold text-gray-800 mb-2 sm:mb-2 md:mb-2 lg:mb-3">{`Hello! ${user.displayName}`}</h1>
+              <h1 className="text-2xl font-bold text-gray-800 mb-2 sm:mb-2 md:mb-2 lg:mb-3">{`Hello! ${userInfo.name}`}</h1>
               <button
               onClick={handleSignOut}
               className="w-full border border-black text-black text-semibold py-2
@@ -138,6 +172,7 @@ function Login() {
               />
             </div>
             <button
+              onClick={handleLogin}
               type="submit"
               className="w-full mb-4 bg-transparent text-black border text-[18px]
               hover:text-white border-e-black text-semibold py-2 px-4 rounded-md

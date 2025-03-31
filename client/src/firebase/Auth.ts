@@ -7,7 +7,9 @@ import {
     signInWithPopup,
     User,
     updateProfile,
-    sendPasswordResetEmail 
+    sendPasswordResetEmail,
+    onAuthStateChanged,
+    Unsubscribe
   } from "firebase/auth";
 
 
@@ -37,6 +39,13 @@ import {
             return null;
         }
       }
+
+      onAuthStateChanged(callback: (user: User | null) => void): Unsubscribe {
+        return onAuthStateChanged(this.auth, (user) => {
+          callback(user);
+        });
+      }
+    
 
       async login(email: string, password: string) {
        try {

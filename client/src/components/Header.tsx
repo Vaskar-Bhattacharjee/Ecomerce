@@ -24,13 +24,14 @@ type User ={
 type rootState = {
   Hatbazar: {
     productsData: Product[],
-    userInfo: User |  null,
+    userInfo: User ,
   }
 };
 
 function Header() {
   const productData = useSelector((state: rootState) => state.Hatbazar.productsData);
   const userInfo = useSelector((state: rootState) => state.Hatbazar.userInfo);
+  console.log(userInfo);
   const navigate = useNavigate();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false); // State for mobile menu
 
@@ -83,8 +84,10 @@ function Header() {
 
   {/* User Profile - Clickable to Login Page */}
   <Link to="/login">
+    
     {userInfo ? (
       <div className='flex gap-2 items-center'>
+        
         {userInfo.image ? (
           <img 
             src={userInfo.image} 
@@ -99,10 +102,10 @@ function Header() {
         <p className='underline text-sm'>{userInfo.name}</p>
       </div>
     ) : (
-      <div className="w-8 h-8 rounded-full bg-gray-300 border border-gray-400 flex items-center justify-center">
+      <div className="w-8 h-8  bg-gray-300 rounded-full border border-gray-400 flex items-center justify-center">
         <img 
           src={cart} 
-          className="w-5 h-5 cursor-pointer" 
+          className="w-5 h-5" 
           alt="login" 
         />
       </div>
