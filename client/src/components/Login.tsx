@@ -7,12 +7,12 @@ import {Link} from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { addUser, removeUser } from '../Redux/HatbazarSlice';
 import { useSelector } from 'react-redux';
-
+import { RootState } from '../Redux/store';
 
 function Login() {
   const dispatch = useDispatch()
   const [isLogin, setIsLogin] = useState(true);
-  const userInfo = useSelector((state) => state.Hatbazar.userInfo);
+  const userInfo = useSelector((state: RootState) => state.Hatbazar.userInfo);
   const [user, setUser] = useState<User | null>( null);
   console.log(user)
   const [formData, setFormData] = useState({

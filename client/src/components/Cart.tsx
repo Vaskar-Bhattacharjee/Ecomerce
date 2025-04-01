@@ -50,9 +50,12 @@ function Cart() {
       backgroundClip: clip` }} 
     >
     </div> */}
-    <div className='max-w-screen-xl mx-auto py-10 flex'>
-    <CartItem />
-     <div className=' w-1/3 bg-[#fafafa] py-6 px-4 flex flex-col justify-center items-start '>
+    <div className='max-w-screen-xl mx-auto py-10 flex flex-col lg:flex-row justify-center items-center'>
+    
+      <CartItem />
+
+   
+     <div className=' w-1/3 bg-[#fafafa] py-6 px-4 flex flex-col justify-center items-center lg:items-start '>
      <h2 className='text-2xl font-medium mb-6 pl-4'> Cart Total </h2>
      <div className='flex flex-col gap-5  w-[280px] border-b-gray-500 pl-4 pb-6'>
       
