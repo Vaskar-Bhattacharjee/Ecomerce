@@ -1,10 +1,11 @@
 import { useSelector } from 'react-redux';
 import CartItem from './CartItem';
 import "@fontsource/poppins/500.css"; 
-import { toast,ToastContainer } from 'react-toastify';
+import { toast, ToastContainer } from 'react-toastify';
 import { useEffect, useState } from 'react';
 import {Link} from 'react-router-dom';
 import { FaArrowLeft } from "react-icons/fa";
+import StripeCheckout from 'react-stripe-checkout';
 
 
 
@@ -33,6 +34,7 @@ type User ={
 function Cart() {
  const productData = useSelector((state: rootState) => state.Hatbazar.productsData);
  const userInfo = useSelector((state: rootState) => state.Hatbazar.userInfo);
+ const [payNow, setPayNow] = useState(false);
   const [totalAmt, setTotalAmt] = useState<number>(0);
   const totalAmt2 = totalAmt.toFixed(2);
   const Tax = totalAmt * 0.05;
@@ -42,7 +44,7 @@ function Cart() {
   
   const handleCheckout = () => {
     if (userInfo) {
-      toast.success("Order Placed Successfully");
+      setPayNow(true);
     } else {
       toast.error("Please Login First");
     }
@@ -102,6 +104,20 @@ function Cart() {
       className='w-[270px] h-[40px] bg-black text-white cursor-pointer hover:bg-gray-900 duration-250 '
       style={{ fontFamily: "'Poppins', sans-serif" }}
       >Proceed to Checkout</button>
+      {
+        payNow && <div>
+             <StripeCheckout
+                token={payment}
+                amount={totalAmt * 100}
+                stripeKey="my_PUBLISHABLE_stripekey"
+                name='Hatbazar Online Shopping'
+                label='Pay Now'
+                description={`Your Payment amount is $ ${totalAmt}`}
+
+
+      />
+        </div>
+      }
      </div>
      </div>
      <ToastContainer
