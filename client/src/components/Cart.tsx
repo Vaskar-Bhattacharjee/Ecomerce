@@ -5,7 +5,8 @@ import { toast, ToastContainer } from 'react-toastify';
 import { useEffect, useState } from 'react';
 import {Link} from 'react-router-dom';
 import { FaArrowLeft } from "react-icons/fa";
-import StripeCheckout from 'react-stripe-checkout';
+import { loadStripe } from '@stripe/stripe-js';
+import { Elements, CardElement, useStripe, useElements } from '@stripe/react-stripe-js';
 
 
 
@@ -30,7 +31,51 @@ type User ={
   email: string;
   
 }
+const StripePaymentForm = ({ totalAmt, userInfo, onClose }: { 
+  totalAmt: number; 
+  userInfo: User;
+  onClose: () => void;
+}) => {
+  const stripe = useStripe();
+  const elements = useElements();
 
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!stripe || !elements) return;
+
+    const { error, paymentMethod } = await stripe.createPaymentMethod({
+      type: 'card',
+      card: elements.getElement(CardElement)!,
+    });
+
+    if (error) {
+      toast.error(error.message || "Payment failed");
+      return;
+    }
+
+    // Mock payment success (replace with actual backend call)
+    toast.success(`Payment of $${totalAmt.toFixed(2)} successful!`);
+    onClose();
+  };
+
+  return (
+    <div className="stripe-payment-form">
+      <form onSubmit={handleSubmit}>
+        <CardElement className="mb-4" />
+        <button 
+          type="submit" 
+          className="w-[270px] h-[40px] bg-black text-white cursor-pointer hover:bg-gray-900 duration-250"
+          disabled={!stripe}
+        >
+          Confirm Payment
+        </button>
+      </form>
+    </div>
+  );
+};
+
+// Initialize Stripe (Added)
+const stripePromise = loadStripe('pk_test_51R9W5xENFkjre3XW5V2Y2Is3J2SHDuGkxEjW2vWJPytmaOQw3DERkW8emZSuRrQtMbIq55RM61BrAIuolIJcRYsP002O6uvdax');
 function Cart() {
  const productData = useSelector((state: rootState) => state.Hatbazar.productsData);
  const userInfo = useSelector((state: rootState) => state.Hatbazar.userInfo);
@@ -100,24 +145,20 @@ function Cart() {
         font-semibold text-gray-900'>$ {Total2}</span>
       </p>
       <button 
+
       onClick={handleCheckout}
       className='w-[270px] h-[40px] bg-black text-white cursor-pointer hover:bg-gray-900 duration-250 '
       style={{ fontFamily: "'Poppins', sans-serif" }}
       >Proceed to Checkout</button>
-      {
-        payNow && <div>
-             <StripeCheckout
-                token={payment}
-                amount={totalAmt * 100}
-                stripeKey="my_PUBLISHABLE_stripekey"
-                name='Hatbazar Online Shopping'
-                label='Pay Now'
-                description={`Your Payment amount is $ ${totalAmt}`}
-
-
-      />
-        </div>
-      }
+       {payNow && (
+                <Elements stripe={stripePromise}>
+                  <StripePaymentForm 
+                    totalAmt={totalAmt} 
+                    userInfo={userInfo} 
+                    onClose={() => setPayNow(false)}
+                  />
+                </Elements>
+              )}
      </div>
      </div>
      <ToastContainer
