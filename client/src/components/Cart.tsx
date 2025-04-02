@@ -1,7 +1,7 @@
 import { useSelector } from 'react-redux';
 import CartItem from './CartItem';
 import "@fontsource/poppins/500.css"; 
-import { ToastContainer } from 'react-toastify';
+import { toast,ToastContainer } from 'react-toastify';
 import { useEffect, useState } from 'react';
 import {Link} from 'react-router-dom';
 import { FaArrowLeft } from "react-icons/fa";
@@ -19,11 +19,20 @@ type Product ={
 };
 type rootState ={
   Hatbazar: {  
-    productsData: Product[]
+    productsData: Product[],
+    userInfo: User,
   }
 }
+type User ={
+ 
+  name: string;
+  email: string;
+  
+}
+
 function Cart() {
  const productData = useSelector((state: rootState) => state.Hatbazar.productsData);
+ const userInfo = useSelector((state: rootState) => state.Hatbazar.userInfo);
   const [totalAmt, setTotalAmt] = useState<number>(0);
   const totalAmt2 = totalAmt.toFixed(2);
   const Tax = totalAmt * 0.05;
@@ -31,6 +40,13 @@ function Cart() {
   const Total =  totalAmt + Tax;
   const Total2 =  Total.toFixed(2);
   
+  const handleCheckout = () => {
+    if (userInfo) {
+      toast.success("Order Placed Successfully");
+    } else {
+      toast.error("Please Login First");
+    }
+  }
   useEffect(() => {
     let price = 0;
     productData.map((item) => {
@@ -44,12 +60,7 @@ function Cart() {
   return (
     productData.length > 0 ? (
     <div>
-      {/* <div
-      className="w-auto h-[200px] bg-cover bg-center bg-no-repeat" 
-      style={{ backgroundImage: `url(${Cartimage})
-      backgroundClip: clip` }} 
-    >
-    </div> */}
+ 
     <div className='max-w-screen-xl mx-auto py-10 flex flex-col lg:flex-row justify-center items-center'>
     
       <CartItem />
@@ -86,7 +97,9 @@ function Cart() {
         <span  className='text-lg 
         font-semibold text-gray-900'>$ {Total2}</span>
       </p>
-      <button className='w-[270px] h-[40px] bg-black text-white cursor-pointer hover:bg-gray-900 duration-250 '
+      <button 
+      onClick={handleCheckout}
+      className='w-[270px] h-[40px] bg-black text-white cursor-pointer hover:bg-gray-900 duration-250 '
       style={{ fontFamily: "'Poppins', sans-serif" }}
       >Proceed to Checkout</button>
      </div>
