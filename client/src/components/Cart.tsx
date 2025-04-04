@@ -7,6 +7,7 @@ import {Link} from 'react-router-dom';
 import { FaArrowLeft } from "react-icons/fa";
 import { loadStripe } from '@stripe/stripe-js';
 import { Elements, CardElement, useStripe, useElements } from '@stripe/react-stripe-js';
+import axios from 'axios';
 
 
 
@@ -43,19 +44,33 @@ const StripePaymentForm = ({ totalAmt, userInfo, onClose }: {
     e.preventDefault();
     if (!stripe || !elements) return;
 
-    const { error, paymentMethod } = await stripe.createPaymentMethod({
-      type: 'card',
-      card: elements.getElement(CardElement)!,
-    });
+    try {
+      // 1. Create Payment Intent
+      const { data: { clientSecret } } = await axios.post(
+        "http://localhost:8000/create-payment-intent", 
+        { amount: totalAmt }
+      );
 
-    if (error) {
-      toast.error(error.message || "Payment failed");
-      return;
+      // 2. Confirm Payment
+      const { error } = await stripe.confirmCardPayment(clientSecret, {
+        payment_method: {
+          card: elements.getElement(CardElement)!,
+          billing_details: {
+            email: userInfo.email,
+          },
+        },
+      });
+
+      if (error) {
+        throw new Error(error.message);
+      }
+      
+      toast.success("Payment succeeded!");
+      onClose();
+
+    } catch (err) {
+      toast.error(err instanceof Error ? err.message : "Payment failed");
     }
-
-    // Mock payment success (replace with actual backend call)
-    toast.success(`Payment of $${totalAmt.toFixed(2)} successful!`);
-    onClose();
   };
 
   return (
@@ -103,6 +118,7 @@ function Cart() {
       })
     }
   , [productData])
+
  
   return (
     productData.length > 0 ? (
