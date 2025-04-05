@@ -1,26 +1,38 @@
 const express = require('express');
 const app = express();
-const cors = require('cors');
 require('dotenv').config();
 const bodyParser = require('body-parser');
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
-const port = process.env.PORT;
+const cors = require('cors');
 const stripe = require('stripe')(process.env.STRIPE_KEY);
 
-
-const cors = require('cors');
+// Middleware
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cors({
-  origin: 'http://localhost:5173', // Your frontend URL
-  methods: ['POST', 'GET']
+  origin: 'http://localhost:5173',
+  methods: ['GET', 'POST', 'OPTIONS'], // Add OPTIONS
+  allowedHeaders: ['Content-Type']
 }));
+
+// Payment Endpoint
 app.post('/create-payment-intent', async (req, res) => {
+  try {
     const paymentIntent = await stripe.paymentIntents.create({
-      amount: Math.round(req.body.amount * 100),
-      currency: 'usd',
+      amount: req.body.amount,
+      currency: req.body.currency || 'usd',
     });
     res.json({ clientSecret: paymentIntent.client_secret });
-  });
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+// Health Check
+app.get('/', (req, res) => {
+  res.send('Payment Service Running');
+});
+
+// Start Server
+const port = process.env.PORT || 8000;
 app.listen(port, () => {
-    console.log(`server is running on port ${port}`)
+  console.log(`Server running on port ${port}`);
 });
