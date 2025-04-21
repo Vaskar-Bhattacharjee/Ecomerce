@@ -37,7 +37,7 @@ function ProductsCart({ product }: { product: Product }) {
   return <div className="group relative">
     <div 
     onClick={handleDetails}
-    className="w-full h-55 sm:h-60 md:h-70 lg:h-96 cursor-pointer overflow-hidden">
+    className="w-full h-55 sm:h-60 md:h-70 lg:h-80 cursor-pointer overflow-hidden">
       <img
       className="w-full h-full object-cover group-hover:scale-110 duration-500"
       src={product.image} alt="productImage" />
@@ -45,14 +45,16 @@ function ProductsCart({ product }: { product: Product }) {
     </div>
     <div className="w-full flex justify-between items-center border-[1px] px-2 py-4 h-[99px] sm:h-[99px] md:h-[90px] ">
       <div className="flex flex-col gap-1.5 ">
-        <h2 className="text-[14px] font-semibold">{product.title}</h2>
-        <p className="text-[14px] font-normal">{product.category}</p>
+        <h2 className="text-[14px] font-semibold text-white">
+        {product.title.length > 40 ? product.title.slice(0, 40) + "..." : product.title}
+        </h2>
+        <p className="text-[14px] font-normal text-white">{product.category}</p>
       </div>
       <div className="flex gap-2 items-center relative overflow-x-hidden">
           <div className="text-sm relative w-28 flex gap-2 items-center
           transform group-hover:translate-x-24 transition-transform duration-500 justify-end ">
-            <p className="text-[12px] line-through">${product.oldPrice}</p>
-            <p className="text-[14px] font-semibold">${product.price}</p>
+            {/* <p className="text-[12px] line-through">${product.oldPrice}</p> */}
+            <p className="text-[14px] font-semibold text-white">${product.price}</p>
           </div>
           <p
             onClick={() => {
@@ -68,7 +70,7 @@ function ProductsCart({ product }: { product: Product }) {
               toast.success(`${product.title} added to cart`);
             }}
        
-          className="absolute text-sm z-20 w-[100px] text-gray-500 hover:text-gray-900 flex gap-1
+          className="absolute text-sm z-20 w-[100px] text-white hover:text-white/60 flex gap-1
           items-center top-0 transform translate-x-32 group-hover:translate-x-0 duration-500
           cursor-pointer transition-transform"
           >Add to Cart <span> <BsArrowRight /></span></p>

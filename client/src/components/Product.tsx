@@ -108,7 +108,7 @@ function Product() {
                   cursor-pointer hover:bg-gray-700  duration-300 border active:bg-gray-800">Add to Cart</button>
               </div>
               <div className="flex gap-4">
-              <span className="text-gray-500 text-[18px]">Category :</span><p className="text-gray-900 text-[18px] "> {details.category}</p>
+              <span className="text-white text-[18px]">Category :</span><p className="text-white text-[18px] "> {details.category}</p>
               </div>
               
           </div>
