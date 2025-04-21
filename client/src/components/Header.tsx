@@ -1,6 +1,6 @@
 import { useState } from 'react'; // Add useState for managing mobile menu state
 import { useNavigate } from 'react-router-dom';
-import { websiteLogo } from '../assets/index';
+import {websiteLogo2} from '../assets/index';
 import { cart } from '../assets/index';
 import { shopingBag } from '../assets/index';
 import { useSelector } from 'react-redux';
@@ -40,30 +40,30 @@ function Header() {
   };
 
   return (
-    <div className="w-full bg-white z-40 h-20 border-b-[1px] border-b-gray-800 sticky top-0">
+    <div className="w-full bg-black z-40 h-20 border-b-[1px] absolute top-0">
       <div className="container mx-auto flex justify-between items-center h-20 px-4">
         {/* Logo */}
-        <div className=" w-[200px] h-[200px]">
-          <img className="w-full h-full" src={websiteLogo} alt="logo" />
+        <div className=" w-[100px] h-[100px]:">
+          <img className="w-full h-full" src={websiteLogo2} alt="logo" />
         </div>
 
         {/* Navigation Links (Desktop) */}
-        <div className="hidden md:flex gap-8 items-center">
+        <div className="hidden md:flex gap-8 items-center ">
           <ul className="flex gap-8">
             <li
               onClick={() => navigate('/')}
-              className="text-base text-black font-semibold hover:text-orange-900 hover:underline underline-offset-2 decoration-[1px] cursor-pointer duration-300"
+              className="text-base text-white font-normal hover:text-orange-900 hover:underline underline-offset-2 decoration-[1px] cursor-pointer duration-300"
             >
               Home
             </li>
-            <li className="text-base text-black font-semibold hover:text-orange-900 hover:underline underline-offset-2 decoration-[1px] cursor-pointer duration-300">
+            <li className="text-base text-white font-normal hover:text-orange-900 hover:underline underline-offset-2 decoration-[1px] cursor-pointer duration-300">
               Pages
             </li>
-            <Link to = "/shop"><li className="text-base text-black font-semibold hover:text-orange-900 hover:underline underline-offset-2 decoration-[1px] cursor-pointer duration-300">Shop</li></Link>
-            <li className="text-base text-black font-semibold hover:text-orange-900 hover:underline underline-offset-2 decoration-[1px] cursor-pointer duration-300">
+            <Link to = "/shop"><li className="text-base text-white font-normal hover:text-orange-900 hover:underline underline-offset-2 decoration-[1px] cursor-pointer duration-300">Shop</li></Link>
+            <li className="text-base text-white font-normal hover:text-orange-900 hover:underline underline-offset-2 decoration-[1px] cursor-pointer duration-300">
               Element
             </li>
-            <li className="text-base text-black font-semibold hover:text-orange-900 hover:underline underline-offset-2 decoration-[1px] cursor-pointer duration-300">
+            <li className="text-base text-white font-normal hover:text-orange-900 hover:underline underline-offset-2 decoration-[1px] cursor-pointer duration-300">
               Blog
             </li>
           </ul>
@@ -75,7 +75,7 @@ function Header() {
   {/* Shopping Cart - Always Visible */}
   <Link to="/cart">
     <div className="relative">
-      <img className="w-8 cursor-pointer" src={shopingBag} alt="shopping bag" />
+      <img className="w-8 cursor-pointer text-white" src={shopingBag} alt="shopping bag" />
       <span className="absolute w-4 left-2 top-2.5 text-sm flex items-center justify-center font-semibold text-black">
         {productData.length}
       </span>

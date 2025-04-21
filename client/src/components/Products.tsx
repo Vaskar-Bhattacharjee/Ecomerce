@@ -19,9 +19,9 @@ interface ProductsProps {
 function Products({ products }: ProductsProps) {   
     return (     
         <div>       
-            <div className="flex flex-col items-center gap-4 mt-5 sm:mt-6 md:mt-7 lg:mt-10">         
-                <h1 className="text-2xl bg-black text-white py-2 w-80 text-center">           
-                    Shopping everyday         
+            <div className="flex flex-col bg-black items-center gap-4 mt-5 sm:mt-6 md:mt-7 lg:mt-10 ">         
+                <h1 className="text-2xl bg-transparent border-amber-500 rounded-xl text-white py-2 w-80 text-center">           
+                  Shopping Here   
                 </h1>         
                 <span className="w-20 h-[3px] bg-black"></span>         
                 <p className="max-w-[700px] text-gray-600 text-center">           

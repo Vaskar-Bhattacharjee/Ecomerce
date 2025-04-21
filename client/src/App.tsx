@@ -70,7 +70,7 @@ function App() {
 
 
   return (
-    <div className=''>
+    <div className='bg-black'>
       <RouterProvider router={router} />     
     </div>
   )

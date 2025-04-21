@@ -1,74 +1,77 @@
-import { Banner2 } from "../assets";
+import { useRef, useEffect } from "react";
 
 function Banner() { 
+  const glowRef = useRef<HTMLDivElement>(null);
+  useEffect(() => {
+    const moveLight = (e) => {
+      if (glowRef.current) {
+        glowRef.current.style.left = `${e.clientX}px`;
+        glowRef.current.style.top = `${e.clientY}px`;
+      }
+    };
+    window.addEventListener("mousemove", moveLight);
+    return () => window.removeEventListener("mousemove", moveLight);
+  }, []);
   return (
+    
     <div
-      className="w-screen h-[85vh] overflow-hidden flex  bg-cover bg-center bg-no-repeat"
-      style={{ backgroundImage: `url(${Banner2})` }}
+      className="w-screen h-[100vh] bg-transparent overflow-hidden flex relative "
+     
     >
       <div
-        className="flex flex-1 sm:flex-col md:flex-col lg:flex-row  inset-0 bg-black/70 gap-0 
+      ref={glowRef}
+      className="absolute w-60 h-60 rounded-full 
+    bg-yellow-500
+    opacity-30 blur-3xl pointer-events-none z-10"
+  style={{ transform: "translate(-50%, -50%)" }}
+      ></div>
+
+      <div
+        className="flex w-full  sm:flex-col md:flex-col lg:flex-row  inset-0 bg-transparent gap-0 
                     items-center justify-center "
       >
         <div
-          className="flex flex-col gap-2 sm:gap-2 md:gap-1 lg:gap-1 items-center sm:ml-0 md:ml-15 lg:ml-15  w-full max-w-[500px]">
+          className="flex justify-center items-center flex-col gap-2 sm:gap-2 md:gap-1 lg:gap-2 
+          sm:ml-0 md:ml-15 lg:ml-15  w-full max-w-[700px]">
          
-         <div className="flex  gap-2 lg:flex-col ">
-         <div className="flex items-center sm:items-center lg:w-[500px] lg:justify-start lg:ml-50">
-          <h1
-  className="text-[30px] sm:text-[50px] md:text-[40px] lg:text-[50px] font-bold text-white 
-             mb-[-1rem] text-start sm:text-center md:text-center"
->
-  Get 25% OFF
-</h1>
+         
+          <div>
+            <h1 className="text-[30px] sm:text-[40px] md:text-[40px] tracking-normal leading-none
+            lg:text-[45px] font-bold text-white mb-[-1rem]"> Where Style Meets Elegance — Dresses for Every Moment. </h1>
           </div>
-          <div className="flex items-center sm:items-center lg:w-[500px] lg:justify-start lg:ml-50">
-            <h1
-              className="text-[30px] sm:text-[50px] md:text-[40px] lg:text-[50px] font-bold text-start text-white 
-                         mb-[-1rem] sm:text-center md:text-center"
-            >
-              On Your
-            </h1>
+          <div className="mt-10">
+          <h2 className="text-[25px] sm:text-[40px] md:text-[40px] tracking-normal leading-none
+            lg:text-[35px] font-bold text-yellow-500 mb-[-1rem]"> welcome to this Shop. </h2>
+          </div>
+          <div className="mt-10 max-w-[800px] flex items-start">
+            <p
+            className="text-[14px] sm:text-[14px] md:text-[17px] lg:text-[17px]
+             font-normal tracking-wide text-yellow-100"
+            >Discover the perfect dress for every occasion, crafted to make you look and feel your best.
+               From casual daywear to show-stopping evening pieces, our collection blends trendsetting designs 
+              with timeless elegance. Whether you're dressing up for a party, a date night, or just 
+              because — we’ve got the style that fits your vibe.</p>
           </div>
 
+          <div className="flex items-center mt-3 sm:items-center lg:w-[500px] lg:justify-start lg:ml-50">
+          <div className="relative inline-block rounded-[6px] p-[2px] 
+                bg-transparent border-amber-400 border-[1px] 
+                hover:shadow-[0_0_10px_1px_rgba(255,165,0,0.6)]">
+           <button
+          className="w-[180px] sm:w-[250px] md:w-[250px] cursor-pointer 
+               py-2 px-4 bg-transparent text-white text-xl font-normal text-start 
+               flex justify-center items-center rounded-[5px] 
+               transition duration-300"
+            >
+          Shop Now
+          </button>
          </div>
-          
-          <div className="flex items-center sm:items-center lg:w-[500px] lg:justify-start lg:ml-50">
-            <h1
-              className="text-[30px] sm:text-[50px] md:text-[40px] lg:text-[50px] font-bold text-white 
-                         text-start sm:text-center md:text-center"
-            >
-              First Purchase
-            </h1>
-          </div>
-          <div className="flex flex-col gap-0 sm:gap-0  md:gap-0.5 lg:gap-1">
-          <div className="flex  items-center sm:items-center lg:w-[500px] lg:justify-start lg:ml-50">
-            <h1
-              className="text-[15px] sm:text-[18px] md:text-[20px] lg:text-[20px] font-normal text-white 
-                         text-start sm:text-center md:text-center"
-            >
-              Use the code: <span className="text-sm font-semibold">150FF</span>
-            </h1>
-          </div>
-          <div className="flex items-center sm:items-center lg:w-[500px] lg:justify-start lg:ml-50">
-            <p className="text-[14px] sm:text-[16px] md:text-[18px] lg:text-[18px] font-normal text-white text-start sm:text-center">Easy and FREE Returns</p>
-          </div>
-          <div className="flex items-center sm:items-center lg:w-[500px] lg:justify-start lg:ml-50">
-            <p className="text-[14px] text-white text-start sm:text-center">*T&Cs apply</p>
-          </div>
-          </div>
-          
-          <div className="flex items-center sm:items-center lg:w-[500px] lg:justify-start lg:ml-50">       <button
-              className=" w-[180px] sm:w-[250px] md:w-[250px] lg:[250px]  cursor-pointer 
-                         hover:bg-white hover:text-black hover:duration-300 py-2 px-4 
-                         flex justify-center items-center border bg-transparent text-white 
-                         border-white rounded-[5px] text-xl font-normal text-start mt-5 "
-            >
-              Shop Now
-            </button>
-          </div>
+         </div>
+
+
+
         </div>
-        <div className="lg:w-1/2 md:w-0 sm:w-0 sm:h-0 flex lg:mr-[20px] sm:mx-auto mt-8 items-start"></div>
+         {/* <div className="lg:w-[450px] lg:h-[450px] md:w-0 sm:w-0 sm:h-0  flex lg:mr-[80px] sm:mx-auto bg-gradient-to-br from-violet-500 to-fuchsia-500 shadow-[0_0_20px_2px_rgba(168,85,247,0.5)] mt-8 items-start"></div> */}
       </div>
     </div>
   );
