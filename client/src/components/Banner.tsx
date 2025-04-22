@@ -1,4 +1,5 @@
 import { useRef, useEffect } from "react";
+import BannerPic from '../assets/BannerPic.png'
 
 function Banner() { 
   const glowRef = useRef<HTMLDivElement>(null);
@@ -14,25 +15,22 @@ function Banner() {
   }, []);
   return (
     
-    <div
-      className="w-screen h-[100vh] bg-transparent overflow-hidden flex relative "
-     
-    >
-      <div
+    <div className="w-screen h-[100vh] bg-transparent overflow-hidden flex relative ">
+      {/* <div
       ref={glowRef}
       className="absolute w-60 h-60 rounded-full 
     bg-yellow-500
     opacity-30 blur-3xl pointer-events-none z-10"
   style={{ transform: "translate(-50%, -50%)" }}
-      ></div>
+      ></div> */}
 
       <div
-        className="flex w-full  sm:flex-col md:flex-col lg:flex-row  inset-0 bg-transparent gap-0 
-                    items-center justify-center "
+        className="flex w-[100vw]  sm:flex-col md:flex-col lg:flex-row  inset-0 bg-transparent gap-0 
+                    items-center justify-between "
       >
         <div
-          className="flex justify-center items-center flex-col gap-2 sm:gap-2 md:gap-1 lg:gap-2 
-          sm:ml-0 md:ml-15 lg:ml-15  w-full max-w-[700px]">
+          className="flex justify-center items-start flex-col gap-2 sm:gap-2 md:gap-1 lg:gap-2 
+          sm:ml-0 md:ml-15 lg:ml-15  w-full max-w-[700px]"> //left div starts here
          
          
           <div>
@@ -53,8 +51,8 @@ function Banner() {
               because — we’ve got the style that fits your vibe.</p>
           </div>
 
-          <div className="flex items-center mt-3 sm:items-center lg:w-[500px] lg:justify-start lg:ml-50">
-          <div className="relative inline-block rounded-[6px] p-[2px] 
+          
+          <div className="relative  flex items-start rounded-[6px] p-[2px] 
                 bg-transparent border-amber-400 border-[1px] 
                 hover:shadow-[0_0_10px_1px_rgba(255,165,0,0.6)]">
            <button
@@ -66,12 +64,14 @@ function Banner() {
           Shop Now
           </button>
          </div>
+        </div> //left div ends here
+
+         <div className="lg:w-[600px] lg:h-[500px] md:w-0 sm:w-0 sm:h-0  flex lg:mr-[80px] sm:mx-auto bg-transparent mt-8 items-start">
+          
+          <img
+            className="w-[500px] h-full "
+            src={BannerPic} /> 
          </div>
-
-
-
-        </div>
-         {/* <div className="lg:w-[450px] lg:h-[450px] md:w-0 sm:w-0 sm:h-0  flex lg:mr-[80px] sm:mx-auto bg-gradient-to-br from-violet-500 to-fuchsia-500 shadow-[0_0_20px_2px_rgba(168,85,247,0.5)] mt-8 items-start"></div> */}
       </div>
     </div>
   );

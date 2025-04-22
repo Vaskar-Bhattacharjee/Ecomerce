@@ -52,18 +52,18 @@ function Header() {
           <ul className="flex gap-8">
             <li
               onClick={() => navigate('/')}
-              className="text-base text-white font-normal hover:text-orange-900 hover:underline underline-offset-2 decoration-[1px] cursor-pointer duration-300"
+              className="text-base text-white font-normal  hover:underline underline-offset-2 decoration-[1px] cursor-pointer duration-300"
             >
               Home
             </li>
-            <li className="text-base text-white font-normal hover:text-orange-900 hover:underline underline-offset-2 decoration-[1px] cursor-pointer duration-300">
+            <li className="text-base text-white font-normal  hover:underline underline-offset-2 decoration-[1px] cursor-pointer duration-300">
               Pages
             </li>
-            <Link to = "/shop"><li className="text-base text-white font-normal hover:text-orange-900 hover:underline underline-offset-2 decoration-[1px] cursor-pointer duration-300">Shop</li></Link>
-            <li className="text-base text-white font-normal hover:text-orange-900 hover:underline underline-offset-2 decoration-[1px] cursor-pointer duration-300">
+            <Link to = "/shop"><li className="text-base text-white font-normal  hover:underline underline-offset-2 decoration-[1px] cursor-pointer duration-300">Shop</li></Link>
+            <li className="text-base text-white font-normal  hover:underline underline-offset-2 decoration-[1px] cursor-pointer duration-300">
               Element
             </li>
-            <li className="text-base text-white font-normal hover:text-orange-900 hover:underline underline-offset-2 decoration-[1px] cursor-pointer duration-300">
+            <li className="text-base text-white font-normal  hover:underline underline-offset-2 decoration-[1px] cursor-pointer duration-300">
               Blog
             </li>
           </ul>

@@ -8,7 +8,8 @@ import HeroPic from './HeroPic.png'
 import PaymentStripe from './PaymentStripe.png'
 import Return from './Return.png'
 import Cartimage from './CartImage.jpg'
-import  Banner2 from './Banner2.jpg'
+import BannerPic from './BannerPic.png'
 
-export { cart, Banner2, Cartimage, githubLogo, websiteLogo, websiteLogo2, googleLogo, shopingBag,PaymentStripe, HeroPic, Return };
+
+export { cart, BannerPic, Cartimage, githubLogo, websiteLogo, websiteLogo2, googleLogo, shopingBag,PaymentStripe, HeroPic, Return };
 
