@@ -1,18 +1,19 @@
-import { useRef, useEffect } from "react";
+// import { useRef, useEffect } from "react";
 import BannerPic from '../assets/BannerPic.png'
+import {motion} from 'framer-motion'
 
 function Banner() { 
-  const glowRef = useRef<HTMLDivElement>(null);
-  useEffect(() => {
-    const moveLight = (e) => {
-      if (glowRef.current) {
-        glowRef.current.style.left = `${e.clientX}px`;
-        glowRef.current.style.top = `${e.clientY}px`;
-      }
-    };
-    window.addEventListener("mousemove", moveLight);
-    return () => window.removeEventListener("mousemove", moveLight);
-  }, []);
+  // const glowRef = useRef<HTMLDivElement>(null);
+  // useEffect(() => {
+  //   const moveLight = (e) => {
+  //     if (glowRef.current) {
+  //       glowRef.current.style.left = `${e.clientX}px`;
+  //       glowRef.current.style.top = `${e.clientY}px`;
+  //     }
+  //   };
+  //   window.addEventListener("mousemove", moveLight);
+  //   return () => window.removeEventListener("mousemove", moveLight);
+  // }, []);
   return (
     
     <div className="w-screen h-[100vh] bg-transparent overflow-hidden flex relative ">
@@ -28,9 +29,13 @@ function Banner() {
         className="flex w-[100vw]  sm:flex-col md:flex-col lg:flex-row  inset-0 bg-transparent gap-0 
                     items-center justify-between "
       >
-        <div
+        <motion.div
+          initial={{x: -100, opacity: 0}}
+          animate={{x: 0, opacity: 1}}
+          transition={{duration: 1}}
           className="flex justify-center items-start flex-col gap-2 sm:gap-2 md:gap-1 lg:gap-2 
-          sm:ml-0 md:ml-15 lg:ml-15  w-full max-w-[700px]"> //left div starts here
+          sm:ml-0 md:ml-15 lg:ml-15  w-full max-w-[700px]">
+             {/* //left div starts here */}
          
          
           <div>
@@ -64,14 +69,23 @@ function Banner() {
           Shop Now
           </button>
          </div>
-        </div> //left div ends here
+        </motion.div> 
+        {/* left div ends here */}
 
-         <div className="lg:w-[600px] lg:h-[500px] md:w-0 sm:w-0 sm:h-0  flex lg:mr-[80px] sm:mx-auto bg-transparent mt-8 items-start">
+         <motion.div
+         initial={{x: 100, opacity: 0}}
+         animate={{x: 0, opacity: 1}}
+         transition={{duration: 1}}
+        
+         className="lg:w-[600px] lg:h-[500px] md:w-0 sm:w-0 sm:h-0
+           flex lg:mr-[80px] sm:mx-auto bg-transparent mt-8 items-start"> 
+          {/* Right div starts here */}
           
           <img
             className="w-[500px] h-full "
             src={BannerPic} /> 
-         </div>
+         </motion.div> 
+         {/* // Right div ends here */}
       </div>
     </div>
   );
