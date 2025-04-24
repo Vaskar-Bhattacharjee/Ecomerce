@@ -125,9 +125,12 @@ function Login() {
       [name]: type === 'checkbox' ? checked : value
     }));
   };
+  
 
   return (
-    <div className="w-full flex flex-col items-center h-[110vh] justify-center gap-10 py-20 px-4">
+    <div className="w-full flex flex-col items-center min-h-[110vh]  justify-center gap-10 py-20 px-4
+    
+   ">
       { userInfo ? (
         <div>
               <h1 className="text-2xl font-bold text-gray-800 mb-2 sm:mb-2 md:mb-2 lg:mb-3">{`Hello! ${userInfo.name}`}</h1>
@@ -140,8 +143,13 @@ function Login() {
     
       ):(
 
-        <div className="w-full max-w-md bg-white rounded-lg shadow-md p-8">
-        <h2 className="text-2xl font-bold text-center mb-6 text-black">
+        <div className="w-full max-w-md bg-transparent mt-10 rounded-lg shadow-md p-8
+          bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900
+                border-gray-700
+               shadow-[0_0_30px_-5px_rgba(245,158,11,0.3)]
+               hover:shadow-[0_0_40px_-10px_rgba(245,158,11,0.4)]
+               transition-all duration-500">
+        <h2 className="text-2xl font-bold text-center mb-6 text-white">
           {isLogin ? 'Welcome Back' : 'Create Account'}
         </h2>
         {isLogin && (
@@ -155,7 +163,15 @@ function Login() {
                 placeholder="Enter you email"
                 value={formData.email}
                 onChange={handleChange}
-                className="w-full px-4 py-2 border border-e-black rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="w-full max-w-md p-3 rounded-lg bg-transparent text-white placeholder-amber-200/50
+            border-2 
+            bg-origin-border
+            [box-shadow:0_0_0_2px_transparent]
+            focus:[box-shadow:0_0_0_2px_#f59e0b]
+            border-gradient-to-r from-amber-500 via-orange-600 to-amber-500 
+           
+            transition-all duration-300
+            focus:outline-none"
                 required
               />
             </div>
@@ -167,16 +183,24 @@ function Login() {
                 placeholder="Enter you password"
                 value={formData.password}
                 onChange={handleChange}
-                className="w-full px-4 py-2 border border-e-black rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="w-full max-w-md p-3 rounded-lg bg-transparent text-white placeholder-amber-200/50
+            border-2 
+             bg-origin-border
+            [box-shadow:0_0_0_2px_transparent]
+            focus:[box-shadow:0_0_0_2px_#f59e0b]
+            border-gradient-to-r from-amber-500 via-orange-600 to-amber-500 
+           
+            transition-all duration-300
+            focus:outline-none"
                 required
               />
             </div>
             <button
               onClick={handleLogin}
               type="submit"
-              className="w-full mb-4 bg-transparent text-black border text-[18px]
-              hover:text-white border-e-black text-semibold py-2 px-4 rounded-md
-               hover:bg-gray-600 transition duration-300 cursor-pointer"
+              className="w-full mb-4 font-bold bg-transparent text-white border text-[18px] bg-gray-600
+              hover:text-white   border-gradient-to-r from-amber-500 via-orange-600 to-amber-500  text-semibold py-2 px-4 rounded-md
+               hover:bg-gray-800 transition duration-300 cursor-pointer"
             >
               Log In
             </button>
@@ -193,7 +217,15 @@ function Login() {
                 placeholder="Full Name"
                 value={formData.name}
                 onChange={handleChange}
-                className="w-full px-4 py-2 border border-e-black rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="w-full max-w-md p-3 rounded-lg bg-transparent text-white placeholder-amber-200/50
+            border-2 
+            bg-origin-border
+            [box-shadow:0_0_0_2px_transparent]
+            focus:[box-shadow:0_0_0_2px_#f59e0b]
+            border-gradient-to-r from-amber-500 via-orange-600 to-amber-500 
+           
+            transition-all duration-300
+            focus:outline-none"
                 required
               />
             </div>
@@ -207,7 +239,15 @@ function Login() {
                 placeholder="Email Address"
                 value={formData.email}
                 onChange={handleChange}
-                className="w-full px-4 py-2 border border-e-black rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="w-full max-w-md p-3 rounded-lg bg-transparent text-white placeholder-amber-200/50
+            border-2 
+            bg-origin-border
+            [box-shadow:0_0_0_2px_transparent]
+            focus:[box-shadow:0_0_0_2px_#f59e0b]
+            border-gradient-to-r from-amber-500 via-orange-600 to-amber-500 
+           
+            transition-all duration-300
+            focus:outline-none"
                 required
               />
             </div>
@@ -220,7 +260,15 @@ function Login() {
                 placeholder="Enter password"
                 value={formData.password}
                 onChange={handleChange}
-                className="w-full px-4 py-2 border border-e-black rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="w-full max-w-md p-3 rounded-lg bg-transparent text-white placeholder-amber-200/50
+            border-2 
+            bg-origin-border
+            [box-shadow:0_0_0_2px_transparent]
+            focus:[box-shadow:0_0_0_2px_#f59e0b]
+            border-gradient-to-r from-amber-500 via-orange-600 to-amber-500 
+           
+            transition-all duration-300
+            focus:outline-none"
                 required
                 minLength={6}
               />
@@ -236,7 +284,15 @@ function Login() {
                   placeholder="Confirm Password"
                   value={formData.confirmPassword}
                   onChange={handleChange}
-                  className="w-full px-4 py-2 border border-e-black rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className="w-full max-w-md p-3 rounded-lg bg-transparent text-white placeholder-amber-200/50
+            border-2 
+            bg-origin-border
+            [box-shadow:0_0_0_2px_transparent]
+            focus:[box-shadow:0_0_0_2px_#f59e0b]
+            border-gradient-to-r from-amber-500 via-orange-600 to-amber-500 
+           
+            transition-all duration-300
+            focus:outline-none"
                   required
                   minLength={6}
                 />
@@ -253,8 +309,8 @@ function Login() {
                   onChange={handleChange}
                   className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded"
                 />
-                <label htmlFor="agreeToTerms" className="ml-2 block text-sm text-gray-700">
-                  I agree to the <a href="/TermsAndPrivacy" className="text-blue-600 hover:underline">Terms</a> and <a href="/TermsAndPrivacy" className="text-blue-600 hover:underline">Privacy Policy</a>
+                <label htmlFor="agreeToTerms" className="ml-2 block text-sm text-yellow-300">
+                  I agree to the <a href="/TermsAndPrivacy" className="text-blue-300 hover:underline">Terms</a> and <a href="/TermsAndPrivacy" className="text-blue-300 hover:underline">Privacy Policy</a>
                 </label>
               </div>
             )}
@@ -262,8 +318,8 @@ function Login() {
             <button
               type="submit"
               onClick={handleSignUp}
-              className="w-full bg-transparent text-black border
-              cursor-pointer border-e-black py-2 px-4 rounded-md hover:bg-gray-600 hover:text-white  transition duration-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+              className="w-full bg-gray-600 text-white border
+              cursor-pointer border-e-black py-2 px-4 rounded-md hover:bg-gray-800 hover:text-white  transition duration-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
             >
               Sign Up
             </button>
@@ -271,27 +327,28 @@ function Login() {
         )}
 
         <div className="flex items-center mb-6">
-          <div className="flex-grow border-t border-gray-300"></div>
-          <span className="mx-4 text-sm text-gray-500">OR</span>
-          <div className="flex-grow border-t border-gray-300"></div>
+          <div className="flex-grow border-t border-gray-700"></div>
+          <span className="mx-4 text-sm text-white/40">OR</span>
+          <div className="flex-grow border-t border-gray-700"></div>
         </div>
 
         <div className="space-y-4">
         <button
             onClick={handleGoogleLogin}
-            className="w-full flex items-center justify-center gap-2 px-4 py-2 border cursor-pointer border-gray-300 rounded-md hover:border-blue-500 hover:bg-blue-50 transition duration-300"
+            className="w-full flex items-center justify-center gap-2 px-4 py-2 
+            border cursor-pointer border-gray-300 rounded-md hover:text-black hover:border-blue-500 hover:bg-blue-50 transition duration-300"
             aria-label="Continue with Google"
           >
             <img className="w-5" src={googleLogo} alt="" role="presentation" />
-            <span className="text-sm font-medium text-gray-700">
+            <span className="text-sm font-medium text-white hover:text-black">
               Continue with Google
             </span>
           </button>
 
           <button className="w-full flex items-center justify-center gap-2 px-4 py-2 border cursor-pointer
-           border-gray-300 rounded-md hover:border-gray-800 hover:bg-gray-50 transition duration-300">
+           border-gray-300 rounded-md hover:border-gray-800 hover:bg-gray-50 hover:text-black transition duration-300">
             <img className="w-5" src={githubLogo} alt="GitHub logo" />
-            <span className="text-sm font-medium text-gray-700">
+            <span className="text-sm font-medium text-white hover:text-black">
               Continue with GitHub
             </span>
           </button>
@@ -300,7 +357,7 @@ function Login() {
         <div className="mt-6 text-center">
           <button
             onClick={() => setIsLogin(!isLogin)}
-            className="text-sm text-blue-600 hover:underline focus:outline-none"
+            className="text-sm text-yellow-600 hover:underline focus:outline-none"
           >
             {isLogin 
               ? "Don't have an account? Sign Up" 
@@ -309,7 +366,7 @@ function Login() {
    
         </div>
         <Link to = "/password-recovery">
-        <p className='text-gray-600 cursor-pointer text-center mt-3'>Forget Password ?</p>
+        <p className='text-white/70 cursor-pointer text-center mt-3'>Forget Password ?</p>
         </Link>
         
       </div>

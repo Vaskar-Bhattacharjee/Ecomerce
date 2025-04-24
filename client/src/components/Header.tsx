@@ -40,7 +40,7 @@ function Header() {
   };
 
   return (
-    <div className="w-full bg-black z-40 h-20 border-b-[1px] absolute top-0">
+    <div className="w-full bg-white/30 z-40 h-20 border-b-[1px] absolute top-0">
       <div className="container mx-auto flex justify-between items-center h-20 px-4">
         {/* Logo */}
         <div className=" w-[100px] h-[100px]:">
@@ -102,12 +102,8 @@ function Header() {
         <p className='underline text-sm'>{userInfo.name}</p>
       </div>
     ) : (
-      <div className="w-8 h-8  bg-gray-300 rounded-full border border-gray-400 flex items-center justify-center">
-        <img 
-          src={cart} 
-          className="w-5 h-5" 
-          alt="login" 
-        />
+      <div className="w-full h-full  bg-green-600 rounded-sm border border-transparent flex items-center justify-center">
+       <p className="text-white font-semibold px-5 py-2">Login</p>
       </div>
     )}
   </Link>

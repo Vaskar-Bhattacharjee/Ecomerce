@@ -9,12 +9,19 @@ import {
 } from "react-icons/fa";
 import { BsPaypal, BsPersonFill } from "react-icons/bs";
 import { MdLocationOn } from "react-icons/md";
+import { motion } from "framer-motion";
 
 
 function Footer() {
   return (
     <div className="bg-black text-[#949494] py-20 font-titleFont">
-        <div className="max-w-screen-xl sm:mx-2 md:mx-4 lg:mx-auto flex justify-center items-center gap-12">
+        <motion.div
+                    initial={{ y: 100, opacity: 0 }}
+                    whileInView={{ y: 0, opacity: 1 }}
+                    viewport={{ once: true }} // Only animate once
+                    transition={{ duration: 1 }}
+        className="max-w-screen-xl sm:mx-2 md:mx-4 lg:mx-auto flex 
+        justify-center items-center gap-12">
             {/* ===========LogoIcon Start here========== */}
             <div className="flex flex-col gap-3">
                 <img 
@@ -93,7 +100,7 @@ function Footer() {
 
             {/* ===========Subscribe End here========== */}
 
-        </div>
+        </motion.div>
     </div>
   )
 }

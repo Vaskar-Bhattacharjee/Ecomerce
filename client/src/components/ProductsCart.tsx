@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { addToCart } from "../Redux/HatbazarSlice";
 import { ToastContainer, toast } from "react-toastify";
+import {motion} from "framer-motion"
 
 
 type Product = {
@@ -34,19 +35,24 @@ function ProductsCart({ product }: { product: Product }) {
     
 }
   
-  return <div className="group relative">
+  return <motion.div
+  initial={{ y: 100, opacity: 0 }}
+  whileInView={{ y: 0, opacity: 1 }}
+  viewport={{ once: true }} // Only animate once
+  transition={{ duration: 1 }}
+  className="group relative bg-transparent">
     <div 
     onClick={handleDetails}
-    className="w-full h-55 sm:h-60 md:h-70 lg:h-80 cursor-pointer overflow-hidden">
+    className="w-full h-55 sm:h-50 md:h-60 lg:h-70 cursor-pointer overflow-hidden">
       <img
-      className="w-full h-full object-cover group-hover:scale-110 duration-500"
+      className="w-fit-content h-fit-content object-cover group-hover:scale-110 duration-500"
       src={product.image} alt="productImage" />
 
     </div>
     <div className="w-full flex justify-between items-center border-[1px] px-2 py-4 h-[99px] sm:h-[99px] md:h-[90px] ">
       <div className="flex flex-col gap-1.5 ">
         <h2 className="text-[14px] font-semibold text-white">
-        {product.title.length > 40 ? product.title.slice(0, 40) + "..." : product.title}
+        {product.title.length > 10 ? product.title.slice(0, 40) + "..." : product.title}
         </h2>
         <p className="text-[14px] font-normal text-white">{product.category}</p>
       </div>
@@ -94,7 +100,7 @@ function ProductsCart({ product }: { product: Product }) {
           pauseOnHover
           theme="dark"
           />
-  </div>
+  </motion.div>
 }
 
 export default ProductsCart

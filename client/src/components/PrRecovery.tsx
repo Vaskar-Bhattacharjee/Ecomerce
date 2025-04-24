@@ -3,6 +3,7 @@ import { toast, ToastContainer } from "react-toastify";
  import Auth from '../firebase/Auth';
 import { BsArrowLeft } from "react-icons/bs";
 import { Link } from "react-router-dom";
+import {motion} from "framer-motion"
 
 function PrRecovery() {
   const [email, setEmail] = useState("");
@@ -27,8 +28,13 @@ function PrRecovery() {
 
   return (
     <div className="w-full flex flex-col items-center h-[90vh] justify-center gap-10 py-20 px-4">
-      <div className="w-full max-w-md bg-white rounded-lg shadow-md p-8">
-        <h2 className="text-2xl font-bold text-center mb-6 text-black">
+      <motion.div
+        initial={{ y: 300, opacity: 0 }}
+        whileInView={{ y: 0, opacity: 1 }}
+        viewport={{ once: true }} // Only animate once
+        transition={{ duration: 1.5 }}
+       className="w-full max-w-md bg-white rounded-lg shadow-md p-8 mt-[50px]">
+        <h2 className="text-2xl font-bold text-center mb-6  text-black">
           Password Recovery
         </h2>
 
@@ -88,7 +94,7 @@ function PrRecovery() {
          
           </>
         )}
-      </div>
+      </motion.div>
 
       <ToastContainer
         position="top-right"
