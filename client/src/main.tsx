@@ -4,7 +4,7 @@ import { Provider } from 'react-redux'
 import { store, persistor  } from './Redux/store'
 import { PersistGate } from 'redux-persist/integration/react';
 import  analytics  from './firebase/config'
-import './'
+import '../index.css'
 import App from './App.tsx'
 import { createContext } from 'react'
 export const AnalyticsContext = createContext(analytics)
