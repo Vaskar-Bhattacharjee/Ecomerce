@@ -1,7 +1,6 @@
 import { useState } from 'react'; // Add useState for managing mobile menu state
 import { useNavigate } from 'react-router-dom';
 import {websiteLogo2} from '../assets/index';
-import { cart } from '../assets/index';
 import { shopingBag } from '../assets/index';
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
@@ -40,7 +39,7 @@ function Header() {
   };
 
   return (
-    <div className="w-full bg-white/30 z-40 h-20 border-b-[1px] absolute top-0">
+    <div className="w-full bg-white/30 z-40 h-20 border-b-[1px] sticky top-0">
       <div className="container mx-auto flex justify-between items-center h-20 px-4">
         {/* Logo */}
         <div className=" w-[100px] h-[100px]:">
@@ -75,8 +74,9 @@ function Header() {
   {/* Shopping Cart - Always Visible */}
   <Link to="/cart">
     <div className="relative">
-      <img className="w-8 cursor-pointer text-white" src={shopingBag} alt="shopping bag" />
-      <span className="absolute w-4 left-2 top-2.5 text-sm flex items-center justify-center font-semibold text-black">
+      <img className="w-8 cursor-pointer " src={shopingBag} alt="shopping bag" />
+      <span className="absolute w-4 left-2 top-2.5 text-sm flex items-center
+       justify-center font-semibold text-yellow-100">
         {productData.length}
       </span>
     </div>
@@ -99,7 +99,7 @@ function Header() {
             {/* Empty div when no image */}
           </div>
         )}
-        <p className='underline text-sm'>{userInfo.name}</p>
+        <p className='underline text-md text-white'>{userInfo.name}</p>
       </div>
     ) : (
       <div className="w-full h-full  bg-green-600 rounded-sm border border-transparent flex items-center justify-center">

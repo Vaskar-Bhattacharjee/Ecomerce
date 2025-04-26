@@ -32,33 +32,30 @@ function Product() {
   }, [location.state]);
 
   return (
-    <div>
+    <div className="mt-0">
       {details ? (
           
-        <div className="max-w-screen-xl h-fit mx-auto my-10  flex gap-10">
-          <div className="w-1/3 relative lg:ml-20">
-            <img 
-            className="w-full h-[200px] sm:h-[300px] md:h-[300px] lg:h-[500px]" src={details.image} alt={details.title} /> 
-            <div className="absolute top-5 right-0">
-              {
-                details.isNew && (
-                  <p className="text-xl font-normal bg-black text-white
-                  px-8 py-1 ">Sale</p>
+        <div className="max-w-screen-xl h-[600px] mx-auto my-10
+         flex items-center  justify-center gap-10">
 
-                 
-                )
-              }
-            </div>
-          </div>
+      {/* image div starts here */}
+          <div className="w-1/3  lg:ml-20"> 
+            <img 
+            className="w-full h-[100px] sm:h-[300px] md:h-[300px] lg:h-[500px]" src={details.image} alt={details.title} /> 
+           
+            
+          </div> 
+          {/* image div starts here */}
+
           <div className="w-3/5 flex flex-col gap-8 justify-center">
               <div> {/* image and price div starts here */}
 
-                <h2 className="text-4xl font-semibold">{details.title}</h2>
+                <h2 className="text-4xl font-semibold text-white">{details.title}</h2>
                 <div className="flex items-center gap-4 lg:mt-3">
-                  <p className="line-through text-gray-500 ">
+                  {/* <p className="line-through text-white ">
                     ${details.oldPrice}
-                  </p>
-                  <p className="text-2xl font-medium text-gray-900 ">
+                  </p> */}
+                  <p className="text-2xl font-medium text-white ">
                     ${details.price}
                   </p>
                 </div>
@@ -72,27 +69,30 @@ function Product() {
                     <MdOutlineStar/>
                     <MdOutlineStar/>
                   </div>
-                  <p className="text-xs text-gray-500">(1 customer review)</p>
+                  <p className="text-xs text-white">(1 customer review)</p>
               </div>
-              <p className="text-gray-500">{details.description}</p>
+              <p className="text-white">{details.description}</p>
               <div className="flex gap-4">
-                <div className="flex w-52 items-center justify-between text-gray-500 
-                gap-4 border p-3">
-                  <p className="text-sm text-gray-700">Quantity</p>
+
+                {/* quantity box starts here */}
+                <div className="flex w-52 items-center justify-between text-white 
+                gap-4 border rounded-sm p-3 hover:bg-gray-900">
+                  <p className="text-sm text-white">Quantity</p>
                   <div className="flex items-center gap-4 text-sm font-semibold">
                     <button 
                     onClick={() => setBaseQty(baseQty ===1 ? 1 : baseQty - 1)}
                     className=" border h-5 font-normal text-lg flex
                     items-center justify-center px-2 hover:bg-gray-700
                     hover:text-white duration-300 active:bg-black cursor-pointer">-</button>
-                    <span className="text-1xl text-gray-900">{baseQty}</span>
+                    <span className="text-1xl text-white">{baseQty}</span>
                     <button
                     onClick={() => setBaseQty(baseQty + 1)}
-                    className=" border h-5 font-normal text-lg flex
+                    className=" border border-white h-5 font-normal text-lg flex
                     items-center justify-center px-2 hover:bg-gray-700
-                    hover:text-white duration-300 active:bg-black cursor-pointer">+</button>
+                    hover:text-white duration-300 active:bg-white cursor-pointer">+</button>
                   </div>               
                 </div>
+                {/* quantity box ends here */}
                   <button
                   onClick={() => {dispatch(addToCart({
                     _id: details._id,
@@ -104,8 +104,8 @@ function Product() {
                     quantity: baseQty,
                   }));
                   toast.success(`${details.title}  added to cart!`);}} 
-                  className="bg-black text-white px-6 py-3
-                  cursor-pointer hover:bg-gray-700  duration-300 border active:bg-gray-800">Add to Cart</button>
+                  className="bg-transparent rounded-sm text-white px-6 py-3
+                  cursor-pointer hover:bg-gray-900  duration-300 border active:bg-gray-800">Add to Cart</button>
               </div>
               <div className="flex gap-4">
               <span className="text-white text-[18px]">Category :</span><p className="text-white text-[18px] "> {details.category}</p>
