@@ -39,7 +39,7 @@ function Header() {
   };
 
   return (
-    <div className="w-full bg-white/30 z-40 h-20 border-b-[1px] sticky top-0">
+    <div className="w-full bg-black/90 z-40 h-20 border-b-[1px] sticky top-0">
       <div className="container mx-auto flex justify-between items-center h-20 px-4">
         {/* Logo */}
         <div className=" w-[100px] h-[100px]:">

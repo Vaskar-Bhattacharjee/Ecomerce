@@ -4,6 +4,7 @@ import { useLocation } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { addToCart } from "../Redux/HatbazarSlice";
 import { ToastContainer, toast } from "react-toastify";
+import { motion } from "framer-motion";
 
 interface Product {
   _id: string;
@@ -39,15 +40,25 @@ function Product() {
          flex items-center  justify-center gap-10">
 
       {/* image div starts here */}
-          <div className="w-1/3  lg:ml-20"> 
+          <motion.div
+           initial={{ x: -100, opacity: 0 }}
+           whileInView={{ x: 0, opacity: 1 }}
+           viewport={{ once: true }} // Only animate once
+           transition={{ duration: 1 }}
+          className="w-1/3  lg:ml-20"> 
             <img 
             className="w-full h-[100px] sm:h-[300px] md:h-[300px] lg:h-[500px]" src={details.image} alt={details.title} /> 
            
             
-          </div> 
-          {/* image div starts here */}
+          </motion.div> 
+          {/* image div ends here */}
 
-          <div className="w-3/5 flex flex-col gap-8 justify-center">
+          <motion.div
+            initial={{ x: 100, opacity: 0 }}
+            whileInView={{ x: 0, opacity: 1 }}
+            viewport={{ once: true }} // Only animate once
+            transition={{ duration: 1 }}
+          className="w-3/5 flex flex-col gap-8 justify-center">
               <div> {/* image and price div starts here */}
 
                 <h2 className="text-4xl font-semibold text-white">{details.title}</h2>
@@ -111,7 +122,7 @@ function Product() {
               <span className="text-white text-[18px]">Category :</span><p className="text-white text-[18px] "> {details.category}</p>
               </div>
               
-          </div>
+          </motion.div>
           <ToastContainer
           position="top-left"
           autoClose={2000}
