@@ -59,9 +59,12 @@ function Header() {
               Pages
             </li>
             <Link to = "/shop"><li className="text-base text-white font-normal  hover:underline underline-offset-2 decoration-[1px] cursor-pointer duration-300">Shop</li></Link>
+            <Link to = "/element">
             <li className="text-base text-white font-normal  hover:underline underline-offset-2 decoration-[1px] cursor-pointer duration-300">
               Element
             </li>
+            </Link>
+            
             <li className="text-base text-white font-normal  hover:underline underline-offset-2 decoration-[1px] cursor-pointer duration-300">
               Blog
             </li>

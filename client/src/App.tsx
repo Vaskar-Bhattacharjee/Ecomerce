@@ -8,7 +8,7 @@ import CartPage from './pages/CartPage';
 import Login from './pages/LoginPage';
 import Precover from './pages/Precover';
 import TermService from './pages/TermService';
-
+import ElementPage from './pages/ElementPage';
 import {
   Outlet,
   RouterProvider,
@@ -62,6 +62,10 @@ const router = createBrowserRouter([
     {
       path: "/TermsAndPrivacy",
       element: <TermService />
+    },
+    {
+      path: "/element",
+      element: <ElementPage />
     }
   ]
  } 
