@@ -7,7 +7,7 @@ export default {
   theme: {
     extend: {
       colors: {
-        "githubColor": "#24292e",
+        "githubColor": "#16191C",
       }
     },
   },
