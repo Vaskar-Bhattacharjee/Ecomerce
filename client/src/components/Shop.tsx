@@ -1,4 +1,5 @@
 import ProductsCart from "./ProductsCart";
+import { motion } from "framer-motion"
 interface Product {
     _id: string;
     title: string;
@@ -34,7 +35,11 @@ function Shop({ products }: ProductsProps) {
             </div>
 
             {/* Products Grid (Unchanged) */}
-            <div className="w-full h-10 flex items-center justify-center gap-1 bg-transparent">
+            <motion.div
+            initial={{x: 500, opacity: 0}}
+            animate={{x: 0, opacity: 1}}
+            transition={{duration: 1}}
+            className="w-full h-10 flex items-center justify-center gap-1 bg-transparent">
                 <button className="text-white border-[1px] rounded-sm border-cyan-500 bg-transparent
                 hover:bg-cyan-950 active:bg-cyan-950 w-[100px] h-full">All</button>
                 <button className="text-white border-[1px] rounded-sm border-cyan-500 bg-transparent
@@ -45,7 +50,7 @@ function Shop({ products }: ProductsProps) {
                 hover:bg-cyan-950 active:bg-cyan-950 w-[100px] h-full">Woman</button>
                 <button className="text-white border-[1px] rounded-sm border-cyan-500 bg-transparent
                 hover:bg-cyan-950 active:bg-cyan-950 w-[100px] h-full">Electronics</button>
-            </div>
+            </motion.div>
             <div className="max-w-screen-xl mx-2 sm:mx-2 md:mx-3 lg:mx-auto py-10 grid grid-cols-2 gap-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 sm:gap-1 md:gap-2 lg:gap-10">         
                 {products.map((item) => (                    
                     <ProductsCart product={item} key={item._id} />                        

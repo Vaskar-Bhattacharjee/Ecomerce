@@ -1,4 +1,4 @@
-
+import {Frame2 }from '../assets/index'
 
 function Element() {
 
