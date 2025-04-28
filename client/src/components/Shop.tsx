@@ -1,5 +1,6 @@
 import ProductsCart from "./ProductsCart";
-import { motion } from "framer-motion"
+import { motion } from "framer-motion";
+import { useState, useEffect } from "react";
 interface Product {
     _id: string;
     title: string;
@@ -15,7 +16,23 @@ interface ProductsProps {
     products: Product[]; 
 }
 
-function Shop({ products }: ProductsProps) {   
+function Shop({ products }: ProductsProps): JSX.Element {
+    
+const [selectedCategory, setSelectedCategory] = useState("All");
+const [filteredProducts, setFilteredProducts] = useState<Product[]>(products);
+
+const handleCategoryChange = (category: string) => {
+    setSelectedCategory(category);
+    if(category === "All") {
+        setFilteredProducts(products);
+        }
+    else {
+        const filtered = products.filter((product) => product.category === category);
+        setFilteredProducts(filtered);
+    }   } 
+  useEffect(()=>{
+    setFilteredProducts(products)
+  },[products])
     return (     
         <div className="min-h-screen"
         >
@@ -40,23 +57,49 @@ function Shop({ products }: ProductsProps) {
             animate={{x: 0, opacity: 1}}
             transition={{duration: 1}}
             className="w-full h-10 flex items-center justify-center gap-1 bg-transparent">
-                <button className="text-white border-[1px] rounded-sm border-cyan-500 bg-transparent
-                hover:bg-cyan-950 active:bg-cyan-950 w-[100px] h-full">All</button>
-                <button className="text-white border-[1px] rounded-sm border-cyan-500 bg-transparent
-                hover:bg-cyan-950 active:bg-cyan-950 w-[100px] h-full">Man</button>
-                <button className="text-white border-[1px] rounded-sm border-cyan-500 bg-transparent
-                hover:bg-cyan-950 active:bg-cyan-950 w-[100px] h-full">Jwelery</button>
-                <button className="text-white border-[1px] rounded-sm border-cyan-500 bg-transparent
-                hover:bg-cyan-950 active:bg-cyan-950 w-[100px] h-full">Woman</button>
-                <button className="text-white border-[1px] rounded-sm border-cyan-500 bg-transparent
-                hover:bg-cyan-950 active:bg-cyan-950 w-[100px] h-full">Electronics</button>
+                <button 
+                onClick={
+                    () => handleCategoryChange("All")
+                }
+                className={`text-white border-[1px] rounded-sm border-cyan-500 bg-transparent
+                    hover:bg-cyan-950 active:bg-cyan-950 w-[100px] h-full
+                    ${selectedCategory === "All" ? "bg-cyan-950" : ""}`}>All</button>
+                <button 
+                onClick={
+                    () => handleCategoryChange("men's clothing")
+                }
+                className={`text-white border-[1px] rounded-sm border-cyan-500 bg-transparent
+                    hover:bg-cyan-950 active:bg-cyan-950 w-[100px] h-full
+                    ${selectedCategory === "men's clothing" ? "bg-cyan-950" : ""}`}>Man</button>
+                <button 
+                onClick={
+                    () => handleCategoryChange("jewelery")
+                }
+                className= {`text-white border-[1px] rounded-sm border-cyan-500 bg-transparent
+                hover:bg-cyan-950 active:bg-cyan-950 w-[100px] h-full
+                ${selectedCategory === "jewelery" ? "bg-cyan-950" : ""}`}>Jwelery</button>
+                <button 
+                onClick={
+                    () => handleCategoryChange("women's clothing")
+                }
+                className={`text-white border-[1px] rounded-sm border-cyan-500 bg-transparent
+                    hover:bg-cyan-950 active:bg-cyan-950 w-[100px] h-full
+                    ${selectedCategory === "women's clothing" ? "bg-cyan-950" : ""}`}>Woman</button>
+                <button 
+                onClick={
+                    () => handleCategoryChange("electronics")
+                }
+                className={`text-white border-[1px] rounded-sm border-cyan-500 bg-transparent
+                    hover:bg-cyan-950 active:bg-cyan-950 w-[100px] h-full
+                    ${selectedCategory === "electronics" ? "bg-cyan-950" : ""}`}>Electronics</button>
             </motion.div>
             <div className="max-w-screen-xl mx-2 sm:mx-2 md:mx-3 lg:mx-auto py-10 grid grid-cols-2 gap-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 sm:gap-1 md:gap-2 lg:gap-10">         
-                {products.map((item) => (                    
+                {filteredProducts.map((item) => (                    
                     <ProductsCart product={item} key={item._id} />                        
                 ))}       
             </div>     
         </div>   
     ); 
 }
+
 export default Shop

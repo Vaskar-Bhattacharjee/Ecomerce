@@ -3,7 +3,8 @@ import Shop from '../components/Shop';
 import { productsData } from '../api/Api';
 
 function ShopPage() {
-  const [products, setProducts] = useState([]);
+
+   const [products, setProducts] = useState([]);
 
   useEffect(() => {
     const fetchProducts = async () => {
