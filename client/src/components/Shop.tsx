@@ -23,6 +23,8 @@ const [filteredProducts, setFilteredProducts] = useState<Product[]>(products);
 
 const handleCategoryChange = (category: string) => {
     setSelectedCategory(category);
+    console.log("Selected category:", selectedCategory);
+    
     if(category === "All") {
         setFilteredProducts(products);
         }
@@ -36,6 +38,7 @@ const handleCategoryChange = (category: string) => {
     return (     
         <div className="min-h-screen"
         >
+      
             {/* Professional Banner Section */}
             <div className="w-[100vw] py-6  "
         
@@ -56,42 +59,55 @@ const handleCategoryChange = (category: string) => {
             initial={{x: 500, opacity: 0}}
             animate={{x: 0, opacity: 1}}
             transition={{duration: 1}}
-            className="w-full h-10 flex items-center justify-center gap-1 bg-transparent">
+            className="w-full h-11 flex items-center justify-center gap-1 bg-transparent">
                 <button 
                 onClick={
                     () => handleCategoryChange("All")
                 }
-                className={`text-white border-[1px] rounded-sm border-cyan-500 bg-transparent
-                    hover:bg-cyan-950 active:bg-cyan-950 w-[100px] h-full
-                    ${selectedCategory === "All" ? "bg-cyan-950" : ""}`}>All</button>
+                style={{
+                    backgroundColor: selectedCategory === "All" ? "rgb(8,51,68)" : "transparent"
+                  }}
+                className="text-white border-[1px] rounded-sm border-cyan-500 bg-transparent
+                    hover:bg-cyan-950 w-[100px] h-full
+                    transition-colors duration-150"
+                    >All</button>
                 <button 
                 onClick={
                     () => handleCategoryChange("men's clothing")
                 }
-                className={`text-white border-[1px] rounded-sm border-cyan-500 bg-transparent
-                    hover:bg-cyan-950 active:bg-cyan-950 w-[100px] h-full
-                    ${selectedCategory === "men's clothing" ? "bg-cyan-950" : ""}`}>Man</button>
+                style={{
+                    backgroundColor: selectedCategory === "men's clothing" ? "rgb(8,51,68)" : "transparent"
+                  }}
+                className="text-white border-[1px] rounded-sm border-cyan-500 bg-transparent
+                    hover:bg-cyan-950 w-[100px] h-full
+                    transition-colors duration-150">Man</button>
                 <button 
                 onClick={
                     () => handleCategoryChange("jewelery")
                 }
-                className= {`text-white border-[1px] rounded-sm border-cyan-500 bg-transparent
-                hover:bg-cyan-950 active:bg-cyan-950 w-[100px] h-full
-                ${selectedCategory === "jewelery" ? "bg-cyan-950" : ""}`}>Jwelery</button>
+                style={{
+                    backgroundColor: selectedCategory === "jewelery" ? "rgb(8,51,68)" : "transparent"
+                  }}
+                className="text-white border-[1px] rounded-sm border-cyan-500 bg-transparent
+                hover:bg-cyan-950 w-[100px] h-full" >Jwelery</button>
                 <button 
                 onClick={
                     () => handleCategoryChange("women's clothing")
                 }
-                className={`text-white border-[1px] rounded-sm border-cyan-500 bg-transparent
-                    hover:bg-cyan-950 active:bg-cyan-950 w-[100px] h-full
-                    ${selectedCategory === "women's clothing" ? "bg-cyan-950" : ""}`}>Woman</button>
+                style={{
+                    backgroundColor: selectedCategory === "women's clothing" ? "rgb(8,51,68)" : "transparent"
+                  }}
+                className="text-white border-[1px] rounded-sm border-cyan-500 bg-transparent
+                    hover:bg-cyan-950 active:bg-cyan-950 w-[100px] h-full">Woman</button>
                 <button 
                 onClick={
                     () => handleCategoryChange("electronics")
                 }
-                className={`text-white border-[1px] rounded-sm border-cyan-500 bg-transparent
-                    hover:bg-cyan-950 active:bg-cyan-950 w-[100px] h-full
-                    ${selectedCategory === "electronics" ? "bg-cyan-950" : ""}`}>Electronics</button>
+                style={{
+                    backgroundColor: selectedCategory === "electronics" ? "rgb(8,51,68)" : "transparent"
+                  }}
+                className="text-white border-[1px] rounded-sm border-cyan-500 bg-transparent
+                    hover:bg-cyan-950 active:bg-cyan-950 w-[100px] h-full">Electronics</button>
             </motion.div>
             <div className="max-w-screen-xl mx-2 sm:mx-2 md:mx-3 lg:mx-auto py-10 grid grid-cols-2 gap-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 sm:gap-1 md:gap-2 lg:gap-10">         
                 {filteredProducts.map((item) => (                    
